@@ -4,23 +4,33 @@
  */
 package Formularios;
 
+import Clases.ArbolBinario;
+import Clases.NodoPersona;
+import java.io.BufferedReader;
 import javax.swing.JFileChooser;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.text.DecimalFormat;
 
 /**
  *
  * @author Edu
  */
 public class FormPrincipal extends javax.swing.JFrame {
-
+    private ArbolBinario arbol;
+    private static final DecimalFormat df = new DecimalFormat("#");
     /**
      * Creates new form FormPrincipal
      */
     public FormPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
+        arbol = new ArbolBinario();
     }
 
     /**
@@ -34,6 +44,9 @@ public class FormPrincipal extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         botonSeleccion = new javax.swing.JButton();
+        botonMostrar = new javax.swing.JButton();
+        botonBuscar = new javax.swing.JButton();
+        botonEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,33 +60,165 @@ public class FormPrincipal extends javax.swing.JFrame {
         });
         jPanel1.add(botonSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, -1, -1));
 
+        botonMostrar.setText("Mostrar datos");
+        botonMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonMostrarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, -1, -1));
+
+        botonBuscar.setText("Buscar por DPI");
+        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 310, -1, -1));
+
+        botonEliminar.setText("Eliminar");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
+                .addGap(15, 15, 15))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonSeleccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSeleccionActionPerformed
-    JFileChooser escogerArchivo = new JFileChooser();
-    File archivoSeleccionado = null;
-    FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de Texto (.txt)", "txt");
-    escogerArchivo.setFileFilter(filtro);
-    
-    int valorRetornado = escogerArchivo.showOpenDialog(this);
-    if (valorRetornado == JFileChooser.APPROVE_OPTION) {
-    archivoSeleccionado = escogerArchivo.getSelectedFile();
-    }
-    
+        
+        //Opcion ingresar solo unos cuantos nodos o todos los nodos
+        String[] options = {"Ingresar cantidad específica", "Ingresar todos los nodos"};
+        int option = JOptionPane.showOptionDialog(null,
+                "¿Qué acción desea realizar?",
+                "Selección de Ingreso",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[0]);
 
+        int cantidad = 0;
+        boolean validInput = false;
+        
+        
+        //Validacion solo numeros y no texto
+        if (option == 0) {
+            while (!validInput) {
+                try {
+                    String input = JOptionPane.showInputDialog(null, "¿Cuántos nodos desea ingresar?", "Ingreso", JOptionPane.QUESTION_MESSAGE);
+                    if (input == null) {
+                        //El usuario presionó cancelar
+                        return;
+                    }
+                    cantidad = Integer.parseInt(input);
+                    validInput = true; // La entrada es válida
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Por favor, ingrese un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+        
+        //Escogencia del archivo txt
+        JFileChooser escogerArchivo = new JFileChooser();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de Texto (.txt)", "txt");
+        escogerArchivo.setFileFilter(filtro);
+        int valorRetornado = escogerArchivo.showOpenDialog(null);
+        if (valorRetornado == JFileChooser.APPROVE_OPTION) {
+            File archivoSeleccionado = escogerArchivo.getSelectedFile();
+            try (BufferedReader br = new BufferedReader(new FileReader(archivoSeleccionado))) {
+                String linea;
+                int contador = 0;
+                while ((linea = br.readLine()) != null) {
+                    if (option == 0 && contador >= cantidad) {
+                        break;
+                    }
+                    String[] partes = separarNombreYDPI(linea);
+                    if (partes != null) {
+                        String nombre = partes[0];
+                        double dpi = Double.parseDouble(partes[1]);
+                        //Ingreso como tal
+                        arbol.AgregarNodo(nombre, null, null, null, dpi, 0, 0, 0, 0); // Solo se agrega nombre y DPI
+                        contador++;
+                    }
+                }
+                JOptionPane.showMessageDialog(null, "Datos ingresados correctamente en el árbol.");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    } 
+    
+    private static String[] separarNombreYDPI(String linea) {
+        // Expresión regular para separar el nombre del DPI
+        Pattern pattern = Pattern.compile("(.+?)\\s+(\\d+)");
+        Matcher matcher = pattern.matcher(linea);
+        if (matcher.matches()) {
+            String nombre = matcher.group(1).trim();
+            String dpi = matcher.group(2).trim();
+            return new String[] { nombre, dpi };
+        }
+        return null;
     }//GEN-LAST:event_botonSeleccionActionPerformed
+
+    private void botonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarActionPerformed
+    System.out.println("Le diste al boton"); // depuración
+        if (!arbol.EstaVacio()) {
+            System.out.println("Elementos en el árbol (InOrden):"); //Recorrido InOrden solo de prueba
+            arbol.InOrden(arbol.raiz);
+        } else {
+            System.out.println("Arbol vacio");
+        } 
+    }//GEN-LAST:event_botonMostrarActionPerformed
+
+    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
+        double numero;
+        if (!arbol.EstaVacio()){
+                            numero = Double.parseDouble(JOptionPane.showInputDialog(null,"Ingrese el numero del nodo a buscar...","Buscando un Nodo",JOptionPane.QUESTION_MESSAGE));
+                            NodoPersona tmp;
+                            tmp = arbol.BuscarNodo(numero);
+                            if (tmp==null){
+                                JOptionPane.showMessageDialog(null,"El nodo buscado no se encuentra en el arbol","Nodo No Encontrado",JOptionPane.INFORMATION_MESSAGE);
+                            }else{
+                                System.out.println("Persona encontrada, sus datos son: " + tmp.getNombre() + ", DPI:  " + df.format(tmp.getDpi()));
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(null,"El Arbol esta vacio","Error",JOptionPane.INFORMATION_MESSAGE);
+                        }
+    }//GEN-LAST:event_botonBuscarActionPerformed
+
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        double numero;
+        if(!arbol.EstaVacio()){
+            numero = Double.parseDouble(JOptionPane.showInputDialog(null,"Ingresa el Numero del Nodo a Eliminar...", "Eliminando un Nodo", JOptionPane.QUESTION_MESSAGE));  
+                   if (arbol.EliminarNodo(numero)==false){
+                                   JOptionPane.showMessageDialog(null, "El Nodo a Eliminar no se encuentra en el Arbol","Nodo no Encontrado",JOptionPane.INFORMATION_MESSAGE);
+                               }else{
+                                   JOptionPane.showMessageDialog(null, "El Nodo ha sido eliminado del Arbol","Nodo Eliminado",JOptionPane.INFORMATION_MESSAGE);
+                           }
+        }else{
+                                JOptionPane.showMessageDialog(null, "El Arbol esta vacio","Error",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_botonEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -111,6 +256,9 @@ public class FormPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonBuscar;
+    private javax.swing.JButton botonEliminar;
+    private javax.swing.JButton botonMostrar;
     private javax.swing.JButton botonSeleccion;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
