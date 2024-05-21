@@ -22,7 +22,7 @@ import java.text.DecimalFormat;
  * @author Edu
  */
 public class FormPrincipal extends javax.swing.JFrame {
-    private ArbolBinario arbol;
+    public ArbolBinario arbol;
     private static final DecimalFormat df = new DecimalFormat("#");
     /**
      * Creates new form FormPrincipal
@@ -47,6 +47,8 @@ public class FormPrincipal extends javax.swing.JFrame {
         botonMostrar = new javax.swing.JButton();
         botonBuscar = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,7 +84,18 @@ public class FormPrincipal extends javax.swing.JFrame {
                 botonEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, -1, -1));
+        jPanel1.add(botonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, -1, -1));
+
+        jButton1.setText("Anadir nodo al arbol");
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, -1, -1));
+
+        jButton2.setText("Actualizar nodo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 350, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -157,7 +170,7 @@ public class FormPrincipal extends javax.swing.JFrame {
                         String nombre = partes[0];
                         double dpi = Double.parseDouble(partes[1]);
                         //Ingreso como tal
-                        arbol.AgregarNodo(nombre, null, null, null, dpi, 0, 0, 0, 0); // Solo se agrega nombre y DPI
+                        arbol.AgregarNodo(nombre, null, null, null, dpi, 0, null, null, null); // Solo se agrega nombre y DPI
                         contador++;
                     }
                 }
@@ -220,6 +233,12 @@ public class FormPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonEliminarActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ActualizarNodoBinario act = new ActualizarNodoBinario();
+        this.setVisible(false);
+        act.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -260,6 +279,8 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonMostrar;
     private javax.swing.JButton botonSeleccion;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
