@@ -11,16 +11,15 @@ import Formularios.FormPrincipal;
  * @author Edu
  */
 public class ProyectoFinalCovid {
+    public static FormPrincipal formu; 
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        FormPrincipal formu = new FormPrincipal();
+        formu = new FormPrincipal();
         formu.setVisible(true);
-        //uhhhh
-        
-     //testest
+
      
      
     }
