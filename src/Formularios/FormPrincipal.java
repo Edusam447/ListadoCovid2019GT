@@ -4,6 +4,7 @@
  */
 package Formularios;
 
+import Clases.ArbolAVL;
 import Clases.ArbolBinario;
 import Clases.NodoPersona;
 import java.io.BufferedReader;
@@ -23,6 +24,7 @@ import java.text.DecimalFormat;
  */
 public class FormPrincipal extends javax.swing.JFrame {
     public ArbolBinario arbol;
+    public ArbolAVL arbolAVL;
     private static final DecimalFormat df = new DecimalFormat("#");
     /**
      * Creates new form FormPrincipal
@@ -31,6 +33,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         arbol = new ArbolBinario();
+        arbolAVL = new ArbolAVL();
     }
 
     /**
@@ -50,6 +53,14 @@ public class FormPrincipal extends javax.swing.JFrame {
         botonAñadir = new javax.swing.JButton();
         botonActualizar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        botonSeleccionAVL = new javax.swing.JButton();
+        botonMostrarAVL = new javax.swing.JButton();
+        botonBuscarAVL = new javax.swing.JButton();
+        botonEliminarAVL = new javax.swing.JButton();
+        botonAñadirAVL = new javax.swing.JButton();
+        botonActualizarAVL = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,7 +88,7 @@ public class FormPrincipal extends javax.swing.JFrame {
             }
         });
 
-        botonEliminar.setText("Eliminar");
+        botonEliminar.setText("Eliminar nodo");
         botonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEliminarActionPerformed(evt);
@@ -116,7 +127,7 @@ public class FormPrincipal extends javax.swing.JFrame {
                         .addComponent(botonBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,7 +146,93 @@ public class FormPrincipal extends javax.swing.JFrame {
                 .addComponent(botonActualizar)
                 .addGap(17, 17, 17)
                 .addComponent(botonEliminar)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel2.setForeground(new java.awt.Color(153, 255, 255));
+
+        botonSeleccionAVL.setText("Seleccionar archivo");
+        botonSeleccionAVL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSeleccionAVLActionPerformed(evt);
+            }
+        });
+
+        botonMostrarAVL.setText("Mostrar datos");
+        botonMostrarAVL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonMostrarAVLActionPerformed(evt);
+            }
+        });
+
+        botonBuscarAVL.setText("Buscar por DPI");
+        botonBuscarAVL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarAVLActionPerformed(evt);
+            }
+        });
+
+        botonEliminarAVL.setText("Eliminar nodo");
+        botonEliminarAVL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarAVLActionPerformed(evt);
+            }
+        });
+
+        botonAñadirAVL.setText("Anadir nodo al arbol");
+        botonAñadirAVL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAñadirAVLActionPerformed(evt);
+            }
+        });
+
+        botonActualizarAVL.setText("Actualizar nodo");
+        botonActualizarAVL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonActualizarAVLActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel2.setText("Arbol AVL");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botonAñadirAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonMostrarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonSeleccionAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonBuscarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonActualizarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonEliminarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(14, 14, 14)))
+                .addContainerGap(53, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(jLabel2)
+                .addGap(35, 35, 35)
+                .addComponent(botonAñadirAVL)
+                .addGap(18, 18, 18)
+                .addComponent(botonSeleccionAVL)
+                .addGap(17, 17, 17)
+                .addComponent(botonMostrarAVL)
+                .addGap(17, 17, 17)
+                .addComponent(botonBuscarAVL)
+                .addGap(17, 17, 17)
+                .addComponent(botonActualizarAVL)
+                .addGap(17, 17, 17)
+                .addComponent(botonEliminarAVL)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -145,14 +242,18 @@ public class FormPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(331, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         pack();
@@ -235,7 +336,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonSeleccionActionPerformed
 
     private void botonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarActionPerformed
-    System.out.println("Le diste al boton"); // depuración
+    System.out.println(" ");
         if (!arbol.EstaVacio()) {
             System.out.println("Elementos en el árbol (InOrden):"); //Recorrido InOrden solo de prueba
             arbol.InOrden(arbol.raiz);
@@ -276,15 +377,135 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
         ActualizarNodoBinario act = new ActualizarNodoBinario();
+        act.diferenciador = 0;
         this.setVisible(false);
         act.setVisible(true);
     }//GEN-LAST:event_botonActualizarActionPerformed
 
     private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
         AgregarNodoForm agr = new AgregarNodoForm();
+        agr.diferenciador = 0;
         this.setVisible(false);
         agr.setVisible(true);
     }//GEN-LAST:event_botonAñadirActionPerformed
+
+    private void botonSeleccionAVLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSeleccionAVLActionPerformed
+
+        //Opcion ingresar solo unos cuantos nodos o todos los nodos
+        String[] options = {"Ingresar cantidad específica", "Ingresar todos los nodos"};
+        int option = JOptionPane.showOptionDialog(null,
+                "¿Qué acción desea realizar?",
+                "Selección de Ingreso",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[0]);
+
+        int cantidad = 0;
+        boolean validInput = false;
+        
+        
+        //Validacion solo numeros y no texto
+        if (option == 0) {
+            while (!validInput) {
+                try {
+                    String input = JOptionPane.showInputDialog(null, "¿Cuántos nodos desea ingresar?", "Ingreso", JOptionPane.QUESTION_MESSAGE);
+                    if (input == null) {
+                        //El usuario presionó cancelar
+                        return;
+                    }
+                    cantidad = Integer.parseInt(input);
+                    validInput = true; // La entrada es válida
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Por favor, ingrese un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+        
+        //Escogencia del archivo txt
+        JFileChooser escogerArchivo = new JFileChooser();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de Texto (.txt)", "txt");
+        escogerArchivo.setFileFilter(filtro);
+        int valorRetornado = escogerArchivo.showOpenDialog(null);
+        if (valorRetornado == JFileChooser.APPROVE_OPTION) {
+            File archivoSeleccionado = escogerArchivo.getSelectedFile();
+            try (BufferedReader br = new BufferedReader(new FileReader(archivoSeleccionado))) {
+                String linea;
+                int contador = 0;
+                while ((linea = br.readLine()) != null) {
+                    if (option == 0 && contador >= cantidad) {
+                        break;
+                    }
+                    String[] partes = separarNombreYDPI(linea);
+                    if (partes != null) {
+                        String nombre = partes[0];
+                        double dpi = Double.parseDouble(partes[1]);
+                        //Ingreso como tal
+                        arbolAVL.AgregarNodo(nombre, null, null, null, dpi, 0, null, null, null); // Solo se agrega nombre y DPI
+                        contador++;
+                    }
+                }
+                JOptionPane.showMessageDialog(null, "Datos ingresados correctamente en el árbol.");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }        
+    }//GEN-LAST:event_botonSeleccionAVLActionPerformed
+
+    private void botonMostrarAVLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarAVLActionPerformed
+       System.out.println(" ");
+        if (!arbolAVL.EstaVacio()) {
+            System.out.println("Elementos en el árbol (InOrden):"); //Recorrido InOrden solo de prueba
+            arbolAVL.InOrden(arbolAVL.raiz);
+        } else {
+            System.out.println("Arbol vacio");
+        } 
+    }//GEN-LAST:event_botonMostrarAVLActionPerformed
+
+    private void botonBuscarAVLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarAVLActionPerformed
+       double numero;
+        if (!arbolAVL.EstaVacio()){
+                            numero = Double.parseDouble(JOptionPane.showInputDialog(null,"Ingrese el numero del nodo a buscar...","Buscando un Nodo",JOptionPane.QUESTION_MESSAGE));
+                            NodoPersona tmp;
+                            tmp = arbolAVL.BuscarNodo(numero);
+                            if (tmp==null){
+                                JOptionPane.showMessageDialog(null,"El nodo buscado no se encuentra en el arbol","Nodo No Encontrado",JOptionPane.INFORMATION_MESSAGE);
+                            }else{
+                                System.out.println("Persona encontrada, sus datos son: " + tmp.getNombre() + ", DPI:  " + df.format(tmp.getDpi()));
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(null,"El Arbol esta vacio","Error",JOptionPane.INFORMATION_MESSAGE);
+                        }
+    }//GEN-LAST:event_botonBuscarAVLActionPerformed
+
+    private void botonEliminarAVLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarAVLActionPerformed
+        double numero;
+        if(!arbolAVL.EstaVacio()){
+            numero = Double.parseDouble(JOptionPane.showInputDialog(null,"Ingresa el Numero del Nodo a Eliminar...", "Eliminando un Nodo", JOptionPane.QUESTION_MESSAGE));  
+                   if (arbolAVL.EliminarNodo(numero)==false){
+                                   JOptionPane.showMessageDialog(null, "El Nodo a Eliminar no se encuentra en el Arbol","Nodo no Encontrado",JOptionPane.INFORMATION_MESSAGE);
+                               }else{
+                                   JOptionPane.showMessageDialog(null, "El Nodo ha sido eliminado del Arbol","Nodo Eliminado",JOptionPane.INFORMATION_MESSAGE);
+                           }
+        }else{
+                                JOptionPane.showMessageDialog(null, "El Arbol esta vacio","Error",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_botonEliminarAVLActionPerformed
+
+    private void botonAñadirAVLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirAVLActionPerformed
+       AgregarNodoForm agr = new AgregarNodoForm();
+        agr.diferenciador = 1;
+        this.setVisible(false);
+        agr.setVisible(true);
+    }//GEN-LAST:event_botonAñadirAVLActionPerformed
+
+    private void botonActualizarAVLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarAVLActionPerformed
+        ActualizarNodoBinario act = new ActualizarNodoBinario();
+        act.diferenciador = 1;
+        this.setVisible(false);
+        act.setVisible(true);
+    }//GEN-LAST:event_botonActualizarAVLActionPerformed
 
     /**
      * @param args the command line arguments
@@ -323,12 +544,20 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonActualizar;
+    private javax.swing.JButton botonActualizarAVL;
     private javax.swing.JButton botonAñadir;
+    private javax.swing.JButton botonAñadirAVL;
     private javax.swing.JButton botonBuscar;
+    private javax.swing.JButton botonBuscarAVL;
     private javax.swing.JButton botonEliminar;
+    private javax.swing.JButton botonEliminarAVL;
     private javax.swing.JButton botonMostrar;
+    private javax.swing.JButton botonMostrarAVL;
     private javax.swing.JButton botonSeleccion;
+    private javax.swing.JButton botonSeleccionAVL;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

@@ -12,7 +12,7 @@ import proyectofinalcovid.ProyectoFinalCovid;
  * @author Edu
  */
 public class AgregarNodoForm extends javax.swing.JFrame {
-
+public byte diferenciador;
     /**
      * Creates new form ActualizarNodoBinario
      */
@@ -277,21 +277,40 @@ public class AgregarNodoForm extends javax.swing.JFrame {
       String fV2aux = jFormattedTextFieldD2.getText();
       String fV3aux = jFormattedTextFieldD3.getText();
       
-      
-      
-      ProyectoFinalCovid.formu.arbol.AgregarNodo
+      switch(diferenciador){
+          case 0:
+               ProyectoFinalCovid.formu.arbol.AgregarNodo
         ( 
               nomAux, 
               depAux, 
               munAux, 
               lVacAux,
               dpiAux,
-              nDosisAux, 
+              nDosisAux,
               fV1aux, 
               fV2aux, 
               fV3aux);
       
-      JOptionPane.showMessageDialog(null, "Nodo editado correctamente", "Editar Nodo", JOptionPane.INFORMATION_MESSAGE);
+      JOptionPane.showMessageDialog(null, "Nodo agregado correctamente", "Editar Nodo", JOptionPane.INFORMATION_MESSAGE);
+      this.setVisible(false);
+              break;
+          case 1:
+              ProyectoFinalCovid.formu.arbolAVL.AgregarNodo
+        ( 
+              nomAux, 
+              depAux, 
+              munAux, 
+              lVacAux,
+              dpiAux,
+              nDosisAux,
+              fV1aux, 
+              fV2aux, 
+              fV3aux);
+      
+      JOptionPane.showMessageDialog(null, "Nodo agregado correctamente", "Editar Nodo", JOptionPane.INFORMATION_MESSAGE);
+      this.setVisible(false);
+              break;
+      }
       ProyectoFinalCovid.formu.setVisible(true);
     }//GEN-LAST:event_botonEditarActionPerformed
 

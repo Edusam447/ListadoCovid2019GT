@@ -3,59 +3,143 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Clases;
+
 import java.text.DecimalFormat;
-import java.util.HashSet;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Edu
  */
-
-public class ArbolBinario {
+public class ArbolAVL {
     public static NodoPersona raiz;
     private static final DecimalFormat df = new DecimalFormat("#");
     
-    public ArbolBinario(){
-    raiz = null;
-}
-    
-       //Metodo para insertar un nodo en el arbol
-    public static void AgregarNodo(String n, String d, String m, String lv, double dpi, int cDosis, String dVacuna1, String dVacuna2, String dVacuna3){
-        NodoPersona nuevo = new NodoPersona(n, d, m, lv, dpi, cDosis, 0, dVacuna1, dVacuna2, dVacuna3);
-       
-        if (raiz == null){
-            raiz = nuevo;
-        }else{
-            NodoPersona auxiliar = raiz;
-            NodoPersona padre;
-            
-            while (true){
-                padre = auxiliar;
-                if (dpi<auxiliar.dpi){
-                    auxiliar = auxiliar.hijoIzquierdo;
-                    if(auxiliar == null){
-                        padre.hijoIzquierdo = nuevo;
-                        return;
-                    }
-                }else{
-                    auxiliar = auxiliar.hijoDerecho;
-                    if (auxiliar == null){
-                        padre.hijoDerecho = nuevo;
-                        return;
-                    }
-                }
-            }
-        }
+    public ArbolAVL(){
+        raiz = null;
     }
     
     public boolean EstaVacio(){
         return raiz == null;
     }
     
-    //Recorridos
+        public NodoPersona BuscarNodo(double d){
+        NodoPersona aux = raiz;
+        
+        while(aux.dpi!=d){
+            if(d<aux.dpi){
+                aux = aux.hijoIzquierdo;
+            }else{
+                aux = aux.hijoDerecho;
+            }
+            if (aux==null){
+                return null;
+            }
+        }
+        return aux;
+    }
     
-    //Metodo para recorrer el arbol InOrden (Izquierda, Raiz, Derecha)
+    public int ObtenerFE(NodoPersona x){
+        if(x == null){
+            return -1;
+    }else{
+            return x.fe;
+        }
+}
+    //Rotacion simple izquierda
+    public NodoPersona rotacionIzquierda(NodoPersona c) {
+        NodoPersona aux = c.hijoIzquierdo;
+        c.hijoIzquierdo = aux.hijoDerecho;
+        aux.hijoDerecho = c;
+        c.fe = Math.max(ObtenerFE(c.hijoIzquierdo), ObtenerFE(c.hijoDerecho)) + 1 ;
+        aux.fe = Math.max(ObtenerFE(aux.hijoIzquierdo), ObtenerFE(aux.hijoDerecho)) + 1 ;
+        return aux;
+    }
+    
+    //Rotacion simple derecha
+    public NodoPersona rotacionDerecha(NodoPersona c){
+     NodoPersona aux = c.hijoDerecho;
+        c.hijoDerecho = aux.hijoIzquierdo;
+        aux.hijoIzquierdo = c;
+        c.fe = Math.max(ObtenerFE(c.hijoIzquierdo), ObtenerFE(c.hijoDerecho)) + 1 ;
+        aux.fe = Math.max(ObtenerFE(aux.hijoIzquierdo), ObtenerFE(aux.hijoDerecho)) + 1 ;
+        return aux;
+    }
+    
+    //Rotacion doble a la Izquierda
+     public NodoPersona rotacionDobleIzquierda(NodoPersona c){
+         NodoPersona aux;
+         c.hijoIzquierdo = rotacionDerecha(c.hijoIzquierdo);
+         aux = rotacionIzquierda(c);
+         return aux;
+     }   
+     
+     //Rotacion doble a la derecha
+     public NodoPersona rotacionDobleDerecha(NodoPersona c){
+         NodoPersona aux;
+         c.hijoDerecho = rotacionIzquierda(c.hijoDerecho);
+         aux = rotacionDerecha(c);
+         return aux;
+     }   
+     
+     //Insertar nodo en AVL
+     public NodoPersona InsertarAVL(NodoPersona nuevo, NodoPersona subAr){
+         NodoPersona nuevoPadre = subAr;
+         if(nuevo.dpi<subAr.dpi){
+             if(subAr.hijoIzquierdo == null){
+                 subAr.hijoIzquierdo = nuevo;
+             }else{
+                 subAr.hijoIzquierdo = InsertarAVL(nuevo, subAr.hijoIzquierdo);
+                 if((ObtenerFE(subAr.hijoIzquierdo) - ObtenerFE(subAr.hijoDerecho)== 2)){
+                     if(nuevo.dpi < subAr.hijoIzquierdo.dpi){
+                         nuevoPadre = rotacionIzquierda(subAr);
+                     }else{
+                         nuevoPadre = rotacionDobleIzquierda(subAr);
+                     }
+                 }
+             }
+         }else if(nuevo.dpi > subAr.dpi){
+             if(subAr.hijoDerecho == null){
+                 subAr.hijoDerecho = nuevo;
+             }else{
+                 subAr.hijoDerecho = InsertarAVL(nuevo, subAr.hijoDerecho);
+                 if((ObtenerFE(subAr.hijoDerecho) - ObtenerFE(subAr.hijoIzquierdo)== 2)){
+                     if(nuevo.dpi > subAr.hijoDerecho.dpi){
+                         nuevoPadre = rotacionDerecha(subAr);
+                     }else{
+                         nuevoPadre = rotacionDobleDerecha(subAr);
+                     }
+                 }
+             }
+         }else{
+             JOptionPane.showMessageDialog(null, "Ya hay un nodo con ese DPI", "Nodo duplicado", JOptionPane.ERROR);
+         }
+         //Actualizando FE
+         if(subAr.hijoIzquierdo == null && subAr.hijoDerecho != null){
+             subAr.fe = subAr.hijoDerecho.fe + 1;
+         }else if(subAr.hijoDerecho == null && subAr.hijoIzquierdo != null){
+             subAr.fe = subAr.hijoIzquierdo.fe + 1;
+         }else{
+             subAr.fe = Math.max(ObtenerFE(subAr.hijoIzquierdo), ObtenerFE(subAr.hijoDerecho)) + 1 ;
+         }
+         
+         return nuevoPadre;
+     }
+     
+     //Metodo para agregar el nodo en si
+     
+     public void AgregarNodo (String n, String d, String m, String lv, double dpi, int cDosis, String dVacuna1, String dVacuna2, String dVacuna3){
+         NodoPersona nuevo = new NodoPersona(n, d, m, lv, dpi, cDosis, 0, dVacuna1, dVacuna2, dVacuna3);
+         if (raiz == null){
+            raiz = nuevo;
+        }else{
+             raiz = InsertarAVL(nuevo, raiz);
+         }
+     }
+     
+     //Recorridos
+     
+     //Metodo para recorrer el arbol InOrden (Izquierda, Raiz, Derecha)
     public void InOrden (NodoPersona r){
         if (r!=null){
             InOrden(r.hijoIzquierdo);
@@ -80,23 +164,6 @@ public class ArbolBinario {
             PostOrden(r.hijoDerecho);
             System.out.println(r.nombre + ", " + df.format(r.dpi));
         }
-    }
-    
-    //Metodo para buscar un Nodo en el Arbol
-    public NodoPersona BuscarNodo(double d){
-        NodoPersona aux = raiz;
-        
-        while(aux.dpi!=d){
-            if(d<aux.dpi){
-                aux = aux.hijoIzquierdo;
-            }else{
-                aux = aux.hijoDerecho;
-            }
-            if (aux==null){
-                return null;
-            }
-        }
-        return aux;
     }
     
     public boolean EliminarNodo(double d){
@@ -190,6 +257,5 @@ public class ArbolBinario {
         }
     }
     
+     
 }
-
-

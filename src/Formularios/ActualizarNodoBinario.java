@@ -12,7 +12,7 @@ import proyectofinalcovid.ProyectoFinalCovid;
  * @author Edu
  */
 public class ActualizarNodoBinario extends javax.swing.JFrame {
-
+public byte diferenciador;
     /**
      * Creates new form ActualizarNodoBinario
      */
@@ -272,7 +272,9 @@ public class ActualizarNodoBinario extends javax.swing.JFrame {
       String fV2aux = jFormattedTextFieldD2.getText();
       String fV3aux = jFormattedTextFieldD3.getText();
       
-      ProyectoFinalCovid.formu.arbol.actualizarNodo
+      switch(diferenciador){
+          case 0:
+              ProyectoFinalCovid.formu.arbol.actualizarNodo
         ( 
                 dpiBuscar, 
               nomAux, 
@@ -283,9 +285,25 @@ public class ActualizarNodoBinario extends javax.swing.JFrame {
               fV1aux, 
               fV2aux, 
               fV3aux);
-      
-      
       ProyectoFinalCovid.formu.setVisible(true);
+              break;
+          case 1:
+              ProyectoFinalCovid.formu.arbolAVL.actualizarNodo
+        ( 
+                dpiBuscar, 
+              nomAux, 
+              depAux, 
+              munAux, 
+              lVacAux, 
+              nDosisAux, 
+              fV1aux, 
+              fV2aux, 
+              fV3aux);
+      ProyectoFinalCovid.formu.setVisible(true);
+      break;
+    }
+              
+ 
     }//GEN-LAST:event_botonEditarActionPerformed
 
     private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed

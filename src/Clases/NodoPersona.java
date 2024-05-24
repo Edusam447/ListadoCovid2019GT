@@ -11,15 +11,16 @@ package Clases;
 public class NodoPersona {
     String nombre, departamento, municipio, lugarVacunacion, dVacuna1, dVacuna2, dVacuna3;;
     double dpi;
-    int  cDosis;
+    int  fe, cDosis;
     NodoPersona hijoIzquierdo, hijoDerecho;
 
-    public NodoPersona(String n, String d, String m, String lv, double dpi, int cDosis, String dVacuna1, String dVacuna2, String dVacuna3) {
+    public NodoPersona(String n, String d, String m, String lv, double dpi, int cDosis, int fe, String dVacuna1, String dVacuna2, String dVacuna3) {
         this.nombre = n;
         this.departamento = d;
         this.municipio = m;
         this.lugarVacunacion = lv;
         this.dpi = dpi;
+        this.fe = fe;
         this.cDosis = cDosis;
         this.dVacuna1 = dVacuna1;
         this.dVacuna2 = dVacuna2;
