@@ -53,6 +53,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         botonAñadir = new javax.swing.JButton();
         botonActualizar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        botonGuardarArchivo = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         botonSeleccionAVL = new javax.swing.JButton();
         botonMostrarAVL = new javax.swing.JButton();
@@ -61,6 +62,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         botonAñadirAVL = new javax.swing.JButton();
         botonActualizarAVL = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        botonGuardarArchivo1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,6 +114,13 @@ public class FormPrincipal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Arbol Binario");
 
+        botonGuardarArchivo.setText("Guardar en Archivo");
+        botonGuardarArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarArchivoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -126,7 +135,8 @@ public class FormPrincipal extends javax.swing.JFrame {
                         .addComponent(botonSeleccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonGuardarArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -140,13 +150,15 @@ public class FormPrincipal extends javax.swing.JFrame {
                 .addComponent(botonSeleccion)
                 .addGap(17, 17, 17)
                 .addComponent(botonMostrar)
-                .addGap(17, 17, 17)
+                .addGap(18, 18, 18)
+                .addComponent(botonGuardarArchivo)
+                .addGap(18, 18, 18)
                 .addComponent(botonBuscar)
                 .addGap(17, 17, 17)
                 .addComponent(botonActualizar)
                 .addGap(17, 17, 17)
                 .addComponent(botonEliminar)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 255));
@@ -197,6 +209,13 @@ public class FormPrincipal extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("Arbol AVL");
 
+        botonGuardarArchivo1.setText("Guardar en Archivo");
+        botonGuardarArchivo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarArchivo1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -204,15 +223,17 @@ public class FormPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botonAñadirAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonMostrarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonSeleccionAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonBuscarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonActualizarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonEliminarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(14, 14, 14)))
+                    .addComponent(botonGuardarArchivo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(botonAñadirAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonMostrarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonSeleccionAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonBuscarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonActualizarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonEliminarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(14, 14, 14))))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -226,13 +247,15 @@ public class FormPrincipal extends javax.swing.JFrame {
                 .addComponent(botonSeleccionAVL)
                 .addGap(17, 17, 17)
                 .addComponent(botonMostrarAVL)
-                .addGap(17, 17, 17)
+                .addGap(18, 18, 18)
+                .addComponent(botonGuardarArchivo1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(botonBuscarAVL)
                 .addGap(17, 17, 17)
                 .addComponent(botonActualizarAVL)
                 .addGap(17, 17, 17)
                 .addComponent(botonEliminarAVL)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(56, 56, 56))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -286,7 +309,7 @@ public class FormPrincipal extends javax.swing.JFrame {
                         return;
                     }
                     cantidad = Integer.parseInt(input);
-                    validInput = true; // La entrada es válida
+                    validInput = true; //La entrada es válida
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(null, "Por favor, ingrese un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -507,6 +530,54 @@ public class FormPrincipal extends javax.swing.JFrame {
         act.setVisible(true);
     }//GEN-LAST:event_botonActualizarAVLActionPerformed
 
+    private void botonGuardarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarArchivoActionPerformed
+        String[] options = {"Ingresar en PreOrden", "Ingresar en InOrden", "Ingresar en PostOrden"};
+        int option = JOptionPane.showOptionDialog(null,
+                "¿Qué acción desea realizar?",
+                "Selección de Ingreso a archivo",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[0]);
+        
+        switch(option){
+            case 0:
+                arbol.guardarEnArchivoPreOrden("arbol_binariol_preorden.txt");
+                break;
+                case 1:
+                arbol.guardarEnArchivoInOrden("arbol_binariol_inorden.txt");
+                break;
+                case 2  :
+                arbol.guardarEnArchivoPostOrden("arbol_binariol_postorden.txt");
+                break;
+        }
+    }//GEN-LAST:event_botonGuardarArchivoActionPerformed
+
+    private void botonGuardarArchivo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarArchivo1ActionPerformed
+       String[] options = {"Ingresar en PreOrden", "Ingresar en InOrden", "Ingresar en PostOrden"};
+        int option = JOptionPane.showOptionDialog(null,
+                "¿Qué acción desea realizar?",
+                "Selección de Ingreso a archivo",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[0]);
+        
+        switch(option){
+            case 0:
+                arbolAVL.guardarEnArchivoPreOrden("arbolAVL_preorden.txt");
+                break;
+                case 1:
+                arbolAVL.guardarEnArchivoInOrden("arbolAVL_inorden.txt");
+                break;
+                case 2  :
+                arbolAVL.guardarEnArchivoPostOrden("arbolAVL_postorden.txt");
+                break;
+        }           
+    }//GEN-LAST:event_botonGuardarArchivo1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -551,6 +622,8 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton botonBuscarAVL;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonEliminarAVL;
+    private javax.swing.JButton botonGuardarArchivo;
+    private javax.swing.JButton botonGuardarArchivo1;
     private javax.swing.JButton botonMostrar;
     private javax.swing.JButton botonMostrarAVL;
     private javax.swing.JButton botonSeleccion;

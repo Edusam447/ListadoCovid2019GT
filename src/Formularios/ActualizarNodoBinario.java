@@ -262,19 +262,26 @@ public byte diferenciador;
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
+      int eleccion = 0, nDosisAux;
       double dpiBuscar = Double.parseDouble(jTextFieldDpi.getText());
       String nomAux = jTextFieldNombre.getText();
       String depAux = jTextFieldDepartamento.getText();
       String munAux = jTextFieldMunicipio.getText();
       String lVacAux = jTextFieldLVacunacion.getText();
-      int nDosisAux = Integer.parseInt(jTextFieldNDosis.getText());
+       if(jTextFieldNDosis.getText().isEmpty()){
+          nDosisAux = 0;
+      }else{
+        nDosisAux = Integer.parseInt(jTextFieldNDosis.getText());  
+      }
       String fV1aux = jFormattedTextFieldD1.getText();
       String fV2aux = jFormattedTextFieldD2.getText();
       String fV3aux = jFormattedTextFieldD3.getText();
       
       switch(diferenciador){
           case 0:
-              ProyectoFinalCovid.formu.arbol.actualizarNodo
+              JOptionPane.showConfirmDialog(null, "Esta ediatando los datos de la persona: " + ProyectoFinalCovid.formu.arbol.BuscarNodo(dpiBuscar).getNombre() + " Esta seguro?", "Confirmacion", JOptionPane.YES_NO_OPTION , JOptionPane.QUESTION_MESSAGE);
+              if (eleccion == 0){
+                   ProyectoFinalCovid.formu.arbol.actualizarNodo
         ( 
                 dpiBuscar, 
               nomAux, 
@@ -286,8 +293,14 @@ public byte diferenciador;
               fV2aux, 
               fV3aux);
       ProyectoFinalCovid.formu.setVisible(true);
+              }else{
+                  JOptionPane.showMessageDialog(null,  "Nodo no Editado", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
+              }
               break;
+              
           case 1:
+              eleccion = JOptionPane.showConfirmDialog(null, "Esta ediatando los datos de la persona: " + ProyectoFinalCovid.formu.arbolAVL.BuscarNodo(dpiBuscar).getNombre() + " Esta seguro?", "Confirmacion", JOptionPane.YES_NO_OPTION , JOptionPane.QUESTION_MESSAGE);
+              if (eleccion == 0){
               ProyectoFinalCovid.formu.arbolAVL.actualizarNodo
         ( 
                 dpiBuscar, 
@@ -300,6 +313,9 @@ public byte diferenciador;
               fV2aux, 
               fV3aux);
       ProyectoFinalCovid.formu.setVisible(true);
+              }else{
+                  JOptionPane.showMessageDialog(null,  "Nodo no Editado", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
+              }
       break;
     }
               

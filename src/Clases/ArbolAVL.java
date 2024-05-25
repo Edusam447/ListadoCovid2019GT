@@ -4,6 +4,11 @@
  */
 package Clases;
 
+import static Clases.ArbolBinario.raiz;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 
@@ -126,7 +131,7 @@ public class ArbolAVL {
          return nuevoPadre;
      }
      
-     //Metodo para agregar el nodo en si
+     //Metodo para agregar el nodo en si 
      
      public void AgregarNodo (String n, String d, String m, String lv, double dpi, int cDosis, String dVacuna1, String dVacuna2, String dVacuna3){
          NodoPersona nuevo = new NodoPersona(n, d, m, lv, dpi, cDosis, 0, dVacuna1, dVacuna2, dVacuna3);
@@ -163,6 +168,66 @@ public class ArbolAVL {
             PostOrden(r.hijoIzquierdo);
             PostOrden(r.hijoDerecho);
             System.out.println(r.nombre + ", " + df.format(r.dpi));
+        }
+    }
+    
+     //Métodos para guardar en archivo de texto usando InOrden
+    public void guardarEnArchivoInOrden(String nombreArchivo) {
+    File archivo = new File(nombreArchivo);
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
+        guardarInOrden(raiz, writer);
+        JOptionPane.showMessageDialog(null, "Datos guardados en el archivo " + nombreArchivo + " usando InOrden. Ruta: " + archivo.getAbsolutePath() , "Guardado", JOptionPane.INFORMATION_MESSAGE);   
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+    private void guardarInOrden(NodoPersona r, BufferedWriter writer) throws IOException {
+        if (r != null) {
+            guardarInOrden(r.hijoIzquierdo, writer);
+            writer.write(r.nombre + "\t" + new DecimalFormat("#").format(r.dpi));
+            writer.newLine();
+            guardarInOrden(r.hijoDerecho, writer);
+        }
+    }
+
+    //Métodos para guardar en archivo de texto usando PreOrden
+ public void guardarEnArchivoPreOrden(String nombreArchivo) {
+    File archivo = new File(nombreArchivo);
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
+        guardarPreOrden(raiz, writer);
+        JOptionPane.showMessageDialog(null, "Datos guardados en el archivo " + nombreArchivo + " usando PreOrden. Ruta: " + archivo.getAbsolutePath() , "Guardado", JOptionPane.INFORMATION_MESSAGE);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+    private void guardarPreOrden(NodoPersona r, BufferedWriter writer) throws IOException {
+        if (r != null) {
+            writer.write(r.nombre + "\t" + new DecimalFormat("#").format(r.dpi));
+            writer.newLine();
+            guardarPreOrden(r.hijoIzquierdo, writer);
+            guardarPreOrden(r.hijoDerecho, writer);
+        }
+    }
+
+    //Métodos para guardar en archivo de texto usando PostOrden
+public void guardarEnArchivoPostOrden(String nombreArchivo) {
+    File archivo = new File(nombreArchivo);
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
+        guardarPostOrden(raiz, writer);
+        JOptionPane.showMessageDialog(null, "Datos guardados en el archivo " + nombreArchivo + " usando PostOrden. Ruta: " + archivo.getAbsolutePath() , "Guardado", JOptionPane.INFORMATION_MESSAGE);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+    private void guardarPostOrden(NodoPersona r, BufferedWriter writer) throws IOException {
+        if (r != null) {
+            guardarPostOrden(r.hijoIzquierdo, writer);
+            guardarPostOrden(r.hijoDerecho, writer);
+            writer.write(r.nombre + "\t" + new DecimalFormat("#").format(r.dpi));
+            writer.newLine();
         }
     }
     
