@@ -17,6 +17,7 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.text.DecimalFormat;
+import proyectofinalcovid.ProyectoFinalCovid;
 
 /**
  *
@@ -25,6 +26,7 @@ import java.text.DecimalFormat;
 public class FormPrincipal extends javax.swing.JFrame {
     public ArbolBinario arbol;
     public ArbolAVL arbolAVL;
+    double contadorNodos;
     private static final DecimalFormat df = new DecimalFormat("#");
     /**
      * Creates new form FormPrincipal
@@ -34,6 +36,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         arbol = new ArbolBinario();
         arbolAVL = new ArbolAVL();
+        contadorNodos = 0;
     }
 
     /**
@@ -48,7 +51,6 @@ public class FormPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         botonSeleccion = new javax.swing.JButton();
         botonMostrar = new javax.swing.JButton();
-        botonBuscar = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
         botonAñadir = new javax.swing.JButton();
         botonActualizar = new javax.swing.JButton();
@@ -57,7 +59,6 @@ public class FormPrincipal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         botonSeleccionAVL = new javax.swing.JButton();
         botonMostrarAVL = new javax.swing.JButton();
-        botonBuscarAVL = new javax.swing.JButton();
         botonEliminarAVL = new javax.swing.JButton();
         botonAñadirAVL = new javax.swing.JButton();
         botonActualizarAVL = new javax.swing.JButton();
@@ -80,13 +81,6 @@ public class FormPrincipal extends javax.swing.JFrame {
         botonMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonMostrarActionPerformed(evt);
-            }
-        });
-
-        botonBuscar.setText("Buscar por DPI");
-        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBuscarActionPerformed(evt);
             }
         });
 
@@ -133,7 +127,6 @@ public class FormPrincipal extends javax.swing.JFrame {
                         .addComponent(botonAñadir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonMostrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonSeleccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonGuardarArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -149,16 +142,14 @@ public class FormPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(botonSeleccion)
                 .addGap(17, 17, 17)
-                .addComponent(botonMostrar)
+                .addComponent(botonMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botonGuardarArchivo)
                 .addGap(18, 18, 18)
-                .addComponent(botonBuscar)
-                .addGap(17, 17, 17)
                 .addComponent(botonActualizar)
                 .addGap(17, 17, 17)
                 .addComponent(botonEliminar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 255));
@@ -175,13 +166,6 @@ public class FormPrincipal extends javax.swing.JFrame {
         botonMostrarAVL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonMostrarAVLActionPerformed(evt);
-            }
-        });
-
-        botonBuscarAVL.setText("Buscar por DPI");
-        botonBuscarAVL.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBuscarAVLActionPerformed(evt);
             }
         });
 
@@ -224,16 +208,14 @@ public class FormPrincipal extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(botonGuardarArchivo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(botonAñadirAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonMostrarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonSeleccionAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonBuscarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonActualizarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonEliminarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(14, 14, 14))))
+                    .addComponent(botonAñadirAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonMostrarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonSeleccionAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonActualizarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonEliminarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(14, 14, 14)))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -249,13 +231,11 @@ public class FormPrincipal extends javax.swing.JFrame {
                 .addComponent(botonMostrarAVL)
                 .addGap(18, 18, 18)
                 .addComponent(botonGuardarArchivo1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(botonBuscarAVL)
-                .addGap(17, 17, 17)
+                .addGap(18, 18, 18)
                 .addComponent(botonActualizarAVL)
                 .addGap(17, 17, 17)
                 .addComponent(botonEliminarAVL)
-                .addGap(56, 56, 56))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -330,13 +310,20 @@ public class FormPrincipal extends javax.swing.JFrame {
                     if (option == 0 && contador >= cantidad) {
                         break;
                     }
-                    String[] partes = separarNombreYDPI(linea);
+                    String[] partes = separarDatos(linea);
                     if (partes != null) {
                         String nombre = partes[0];
                         double dpi = Double.parseDouble(partes[1]);
-                        //Ingreso como tal
-                        arbol.AgregarNodo(nombre, null, null, null, dpi, 0, null, null, null); // Solo se agrega nombre y DPI
-                        contador++;
+                        String departamento = partes.length > 2 ? partes[2] : null;
+                        String municipio = partes.length > 3 ? partes[3] : null;
+                        String lugarVacunacion = partes.length > 4 ? partes[4] : null;
+                        int cDosis = partes.length > 5 ? Integer.parseInt(partes[5]) : 0;
+                        String dVacuna1 = partes.length > 6 ? partes[6] : null;
+                        String dVacuna2 = partes.length > 7 ? partes[7] : null;
+                        String dVacuna3 = partes.length > 8 ? partes[8] : null;
+
+                        ArbolBinario.AgregarNodo(nombre, departamento, municipio, lugarVacunacion, dpi, cDosis, dVacuna1, dVacuna2, dVacuna3);
+                        contadorNodos++;
                     }
                 }
                 JOptionPane.showMessageDialog(null, "Datos ingresados correctamente en el árbol.");
@@ -346,43 +333,38 @@ public class FormPrincipal extends javax.swing.JFrame {
         }
     } 
     
-    private static String[] separarNombreYDPI(String linea) {
-        // Expresión regular para separar el nombre del DPI
-        Pattern pattern = Pattern.compile("(.+?)\\s+(\\d+)");
+   private static String[] separarDatos(String linea) {
+    // Expresión regular para separar el nombre, DPI y otros campos
+        Pattern pattern = Pattern.compile("(.+?)\\s+(\\d+)(.*)");
         Matcher matcher = pattern.matcher(linea);
-        if (matcher.matches()) {
-            String nombre = matcher.group(1).trim();
-            String dpi = matcher.group(2).trim();
-            return new String[] { nombre, dpi };
-        }
-        return null;
+         if (matcher.matches()) {
+        String nombre = matcher.group(1).trim();
+        String dpi = matcher.group(2).trim();
+        String[] otrosDatos = matcher.group(3).trim().split("\\s+");
+
+        String departamento = otrosDatos.length > 0 ? otrosDatos[0] : null;
+        String municipio = otrosDatos.length > 1 ? otrosDatos[1] : null;
+        String lugarVacunacion = otrosDatos.length > 2 ? otrosDatos[2] : null;
+        int cDosis = otrosDatos.length > 3 ? Integer.parseInt(otrosDatos[3]) : 0;
+        String dVacuna1 = otrosDatos.length > 4 ? otrosDatos[4] : null;
+        String dVacuna2 = otrosDatos.length > 5 ? otrosDatos[5] : null;
+        String dVacuna3 = otrosDatos.length > 6 ? otrosDatos[6] : null;
+
+        return new String[]{nombre, dpi, departamento, municipio, lugarVacunacion, String.valueOf(cDosis), dVacuna1, dVacuna2, dVacuna3};
+    }
+    return null;   
     }//GEN-LAST:event_botonSeleccionActionPerformed
 
     private void botonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarActionPerformed
-    System.out.println(" ");
+        MostrarTablaBinario tabla = new MostrarTablaBinario();
+        System.out.println(" ");
         if (!arbol.EstaVacio()) {
-            System.out.println("Elementos en el árbol (InOrden):"); //Recorrido InOrden solo de prueba
-            arbol.InOrden(arbol.raiz);
+            tabla.setVisible(true);
+            this.setVisible(false);
         } else {
-            System.out.println("Arbol vacio");
+            JOptionPane.showMessageDialog(null, "Arbol vacio", "Arbol Binario", JOptionPane.ERROR_MESSAGE);
         } 
     }//GEN-LAST:event_botonMostrarActionPerformed
-
-    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
-        double numero;
-        if (!arbol.EstaVacio()){
-                            numero = Double.parseDouble(JOptionPane.showInputDialog(null,"Ingrese el numero del nodo a buscar...","Buscando un Nodo",JOptionPane.QUESTION_MESSAGE));
-                            NodoPersona tmp;
-                            tmp = arbol.BuscarNodo(numero);
-                            if (tmp==null){
-                                JOptionPane.showMessageDialog(null,"El nodo buscado no se encuentra en el arbol","Nodo No Encontrado",JOptionPane.INFORMATION_MESSAGE);
-                            }else{
-                                System.out.println("Persona encontrada, sus datos son: " + tmp.getNombre() + ", DPI:  " + df.format(tmp.getDpi()));
-                            }
-                        }else{
-                            JOptionPane.showMessageDialog(null,"El Arbol esta vacio","Error",JOptionPane.INFORMATION_MESSAGE);
-                        }
-    }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         double numero;
@@ -460,13 +442,20 @@ public class FormPrincipal extends javax.swing.JFrame {
                     if (option == 0 && contador >= cantidad) {
                         break;
                     }
-                    String[] partes = separarNombreYDPI(linea);
+                    String[] partes = separarDatos(linea);
                     if (partes != null) {
                         String nombre = partes[0];
                         double dpi = Double.parseDouble(partes[1]);
-                        //Ingreso como tal
-                        arbolAVL.AgregarNodo(nombre, null, null, null, dpi, 0, null, null, null); // Solo se agrega nombre y DPI
-                        contador++;
+                        String departamento = partes.length > 2 ? partes[2] : null;
+                        String municipio = partes.length > 3 ? partes[3] : null;
+                        String lugarVacunacion = partes.length > 4 ? partes[4] : null;
+                        int cDosis = partes.length > 5 ? Integer.parseInt(partes[5]) : 0;
+                        String dVacuna1 = partes.length > 6 ? partes[6] : null;
+                        String dVacuna2 = partes.length > 7 ? partes[7] : null;
+                        String dVacuna3 = partes.length > 8 ? partes[8] : null;
+
+                        ArbolBinario.AgregarNodo(nombre, departamento, municipio, lugarVacunacion, dpi, cDosis, dVacuna1, dVacuna2, dVacuna3); 
+                        contadorNodos++;
                     }
                 }
                 JOptionPane.showMessageDialog(null, "Datos ingresados correctamente en el árbol.");
@@ -475,18 +464,8 @@ public class FormPrincipal extends javax.swing.JFrame {
             }
         }        
     }//GEN-LAST:event_botonSeleccionAVLActionPerformed
-
-    private void botonMostrarAVLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarAVLActionPerformed
-       System.out.println(" ");
-        if (!arbolAVL.EstaVacio()) {
-            System.out.println("Elementos en el árbol (InOrden):"); //Recorrido InOrden solo de prueba
-            arbolAVL.InOrden(arbolAVL.raiz);
-        } else {
-            System.out.println("Arbol vacio");
-        } 
-    }//GEN-LAST:event_botonMostrarAVLActionPerformed
-
-    private void botonBuscarAVLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarAVLActionPerformed
+ 
+         /*private void botonBuscarAVLActionPerformed(java.awt.event.ActionEvent evt) {                                               
        double numero;
         if (!arbolAVL.EstaVacio()){
                             numero = Double.parseDouble(JOptionPane.showInputDialog(null,"Ingrese el numero del nodo a buscar...","Buscando un Nodo",JOptionPane.QUESTION_MESSAGE));
@@ -500,7 +479,18 @@ public class FormPrincipal extends javax.swing.JFrame {
                         }else{
                             JOptionPane.showMessageDialog(null,"El Arbol esta vacio","Error",JOptionPane.INFORMATION_MESSAGE);
                         }
-    }//GEN-LAST:event_botonBuscarAVLActionPerformed
+    }          */
+    
+    private void botonMostrarAVLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarAVLActionPerformed
+       MostrarTablaAVL tablaAVL = new MostrarTablaAVL();
+        System.out.println(" ");
+        if (!arbolAVL.EstaVacio()) {
+            tablaAVL.setVisible(true);
+            this.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(null, "Arbol vacio", "Arbol Binario", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_botonMostrarAVLActionPerformed
 
     private void botonEliminarAVLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarAVLActionPerformed
         double numero;
@@ -578,6 +568,22 @@ public class FormPrincipal extends javax.swing.JFrame {
         }           
     }//GEN-LAST:event_botonGuardarArchivo1ActionPerformed
 
+     /*private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        double numero;
+        if (!arbol.EstaVacio()){
+                            numero = Double.parseDouble(JOptionPane.showInputDialog(null,"Ingrese el numero del nodo a buscar...","Buscando un Nodo",JOptionPane.QUESTION_MESSAGE));
+                            NodoPersona tmp;
+                            tmp = arbol.BuscarNodo(numero);
+                            if (tmp==null){
+                                JOptionPane.showMessageDialog(null,"El nodo buscado no se encuentra en el arbol","Nodo No Encontrado",JOptionPane.INFORMATION_MESSAGE);
+                            }else{
+                                System.out.println("Persona encontrada, sus datos son: " + tmp.getNombre() + ", DPI:  " + df.format(tmp.getDpi()));
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(null,"El Arbol esta vacio","Error",JOptionPane.INFORMATION_MESSAGE);
+                        }
+    } */
+    
     /**
      * @param args the command line arguments
      */
@@ -618,8 +624,6 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton botonActualizarAVL;
     private javax.swing.JButton botonAñadir;
     private javax.swing.JButton botonAñadirAVL;
-    private javax.swing.JButton botonBuscar;
-    private javax.swing.JButton botonBuscarAVL;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonEliminarAVL;
     private javax.swing.JButton botonGuardarArchivo;
