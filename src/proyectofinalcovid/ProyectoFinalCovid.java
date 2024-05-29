@@ -19,9 +19,6 @@ public class ProyectoFinalCovid {
     public static void main(String[] args) {
         formu = new FormPrincipal();
         formu.setVisible(true);
-
-     
-     
     }
     
 }

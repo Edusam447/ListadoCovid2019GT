@@ -148,7 +148,7 @@ public class ArbolAVL {
     public void InOrden (NodoPersona r){
         if (r!=null){
             InOrden(r.hijoIzquierdo);
-            System.out.println(r.nombre + ", " + df.format(r.dpi)) ;
+            System.out.println(r.nombre + ", " + df.format(r.dpi) + ", " + r.departamento + ", " + r.municipio + ", " + r.lugarVacunacion + ", " + r.cDosis + ", " + r.dVacuna1 + ", " + r.dVacuna2 + ", " + r.dVacuna3  ) ;
             InOrden(r.hijoDerecho);
         }
     }
@@ -156,7 +156,7 @@ public class ArbolAVL {
     //Metodo para recorrer el arboel PreOrden (Raiz, Izquierda, Derecha)
     public void PreOrden (NodoPersona r){
         if (r!=null){
-            System.out.println(r.nombre + ", " + df.format(r.dpi));
+            System.out.println(r.nombre + ", " + df.format(r.dpi) + ", " + r.departamento + ", " + r.municipio + ", " + r.lugarVacunacion + ", " + r.cDosis + ", " + r.dVacuna1 + ", " + r.dVacuna2 + ", " + r.dVacuna3  ) ;
             PreOrden(r.hijoIzquierdo);
             PreOrden(r.hijoDerecho);
         }
@@ -167,7 +167,7 @@ public class ArbolAVL {
         if (r!=null){
             PostOrden(r.hijoIzquierdo);
             PostOrden(r.hijoDerecho);
-            System.out.println(r.nombre + ", " + df.format(r.dpi));
+            System.out.println(r.nombre + ", " + df.format(r.dpi) + ", " + r.departamento + ", " + r.municipio + ", " + r.lugarVacunacion + ", " + r.cDosis + ", " + r.dVacuna1 + ", " + r.dVacuna2 + ", " + r.dVacuna3  ) ;
         }
     }
     
@@ -185,7 +185,7 @@ public class ArbolAVL {
     private void guardarInOrden(NodoPersona r, BufferedWriter writer) throws IOException {
         if (r != null) {
             guardarInOrden(r.hijoIzquierdo, writer);
-            writer.write(r.nombre + "\t" + new DecimalFormat("#").format(r.dpi));
+            writer.write(r.nombre + "\t" + new DecimalFormat("#").format(r.dpi) + "\t" + r.departamento + "\t" + r.municipio + "\t" + r.lugarVacunacion + "\t" + r.cDosis + "\t" + r.dVacuna1 + "\t" + r.dVacuna2 + "\t" + r.dVacuna3);
             writer.newLine();
             guardarInOrden(r.hijoDerecho, writer);
         }
@@ -204,7 +204,7 @@ public class ArbolAVL {
 
     private void guardarPreOrden(NodoPersona r, BufferedWriter writer) throws IOException {
         if (r != null) {
-            writer.write(r.nombre + "\t" + new DecimalFormat("#").format(r.dpi));
+            writer.write(r.nombre + "\t" + new DecimalFormat("#").format(r.dpi) + "\t" + r.departamento + "\t" + r.municipio + "\t" + r.lugarVacunacion + "\t" + r.cDosis + "\t" + r.dVacuna1 + "\t" + r.dVacuna2 + "\t" + r.dVacuna3);
             writer.newLine();
             guardarPreOrden(r.hijoIzquierdo, writer);
             guardarPreOrden(r.hijoDerecho, writer);
@@ -226,7 +226,7 @@ public void guardarEnArchivoPostOrden(String nombreArchivo) {
         if (r != null) {
             guardarPostOrden(r.hijoIzquierdo, writer);
             guardarPostOrden(r.hijoDerecho, writer);
-            writer.write(r.nombre + "\t" + new DecimalFormat("#").format(r.dpi));
+            writer.write(r.nombre + "\t" + new DecimalFormat("#").format(r.dpi) + "\t" + r.departamento + "\t" + r.municipio + "\t" + r.lugarVacunacion + "\t" + r.cDosis + "\t" + r.dVacuna1 + "\t" + r.dVacuna2 + "\t" + r.dVacuna3);
             writer.newLine();
         }
     }

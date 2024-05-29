@@ -297,7 +297,6 @@ public byte diferenciador;
                   JOptionPane.showMessageDialog(null,  "Nodo no Editado", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
               }
               break;
-              
           case 1:
               eleccion = JOptionPane.showConfirmDialog(null, "Esta ediatando los datos de la persona: " + ProyectoFinalCovid.formu.arbolAVL.BuscarNodo(dpiBuscar).getNombre() + " Esta seguro?", "Confirmacion", JOptionPane.YES_NO_OPTION , JOptionPane.QUESTION_MESSAGE);
               if (eleccion == 0){
@@ -318,7 +317,7 @@ public byte diferenciador;
               }
       break;
     }
-              
+        this.setVisible(false);      
  
     }//GEN-LAST:event_botonEditarActionPerformed
 
