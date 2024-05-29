@@ -311,6 +311,7 @@ public byte diferenciador;
       this.setVisible(false);
               break;
       }
+      ProyectoFinalCovid.formu.contadorNodos++;
       ProyectoFinalCovid.formu.setVisible(true);
     }//GEN-LAST:event_botonEditarActionPerformed
 
