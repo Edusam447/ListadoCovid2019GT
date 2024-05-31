@@ -117,7 +117,7 @@ public class ArbolBinario {
     private void guardarInOrden(NodoPersona r, BufferedWriter writer) throws IOException {
         if (r != null) {
             guardarInOrden(r.hijoIzquierdo, writer);
-            writer.write(r.nombre + "\t" + new DecimalFormat("#").format(r.dpi) + "\t" + r.departamento + "\t" + r.municipio + "\t" + r.lugarVacunacion + "\t" + r.cDosis + "\t" + r.dVacuna1 + "\t" + r.dVacuna2 + "\t" + r.dVacuna3);
+            writer.write(r.nombre + "\t" + df.format(r.dpi) + "\t" + r.departamento + "\t" + r.municipio + "\t" + r.lugarVacunacion + "\t" + r.cDosis + "\t" + r.dVacuna1 + "\t" + r.dVacuna2 + "\t" + r.dVacuna3);
             writer.newLine();
             guardarInOrden(r.hijoDerecho, writer);
         }
@@ -136,7 +136,7 @@ public class ArbolBinario {
 
     private void guardarPreOrden(NodoPersona r, BufferedWriter writer) throws IOException {
         if (r != null) {
-            writer.write(r.nombre + "\t" + new DecimalFormat("#").format(r.dpi) + "\t" + r.departamento + "\t" + r.municipio + "\t" + r.lugarVacunacion + "\t" + r.cDosis + "\t" + r.dVacuna1 + "\t" + r.dVacuna2 + "\t" + r.dVacuna3);
+            writer.write(r.nombre + "\t" + df.format(r.dpi) + "\t" + r.departamento + "\t" + r.municipio + "\t" + r.lugarVacunacion + "\t" + r.cDosis + "\t" + r.dVacuna1 + "\t" + r.dVacuna2 + "\t" + r.dVacuna3);
             writer.newLine();
             guardarPreOrden(r.hijoIzquierdo, writer);
             guardarPreOrden(r.hijoDerecho, writer);
@@ -158,7 +158,7 @@ public void guardarEnArchivoPostOrden(String nombreArchivo) {
         if (r != null) {
             guardarPostOrden(r.hijoIzquierdo, writer);
             guardarPostOrden(r.hijoDerecho, writer);
-            writer.write(r.nombre + "\t" + new DecimalFormat("#").format(r.dpi) + "\t" + r.departamento + "\t" + r.municipio + "\t" + r.lugarVacunacion + "\t" + r.cDosis + "\t" + r.dVacuna1 + "\t" + r.dVacuna2 + "\t" + r.dVacuna3);
+            writer.write(r.nombre + "\t" + df.format(r.dpi) + "\t" + r.departamento + "\t" + r.municipio + "\t" + r.lugarVacunacion + "\t" + r.cDosis + "\t" + r.dVacuna1 + "\t" + r.dVacuna2 + "\t" + r.dVacuna3);
             writer.newLine();
         }
     }
@@ -253,7 +253,28 @@ public void guardarEnArchivoPostOrden(String nombreArchivo) {
             JOptionPane.showMessageDialog(null, "Nodo no encontrado", "Actualizacion", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+        
+        // Método para generar el archivo DOT
+    public void generarDot(String filePath) throws IOException {
+        FileWriter fileWriter = new FileWriter(filePath);
+        fileWriter.write("digraph G {\n");
+        if (raiz != null) {
+            escribirNodoDOT(raiz, fileWriter);
+        }
+        fileWriter.write("}\n");
+        fileWriter.close();
+    }
+
+    private void escribirNodoDOT(NodoPersona nodo, FileWriter fileWriter) throws IOException {
+        if (nodo.hijoIzquierdo != null) {
+            fileWriter.write("\"" + nodo.nombre + "\n(" + df.format(nodo.dpi) + ")\" -> \"" + nodo.hijoIzquierdo.nombre + "\n(" + df.format(nodo.hijoIzquierdo.dpi) + ")\";\n");
+            escribirNodoDOT(nodo.hijoIzquierdo, fileWriter);
+        }
+        if (nodo.hijoDerecho != null) {
+            fileWriter.write("\"" + nodo.nombre + "\n(" + df.format(nodo.dpi) + ")\" -> \"" + nodo.hijoDerecho.nombre + "\n(" + df.format(nodo.hijoDerecho.dpi) + ")\";\n");
+            escribirNodoDOT(nodo.hijoDerecho, fileWriter);
+        }
+    }    
 }
 
 

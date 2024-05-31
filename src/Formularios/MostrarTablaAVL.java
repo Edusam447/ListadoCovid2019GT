@@ -5,6 +5,7 @@
 package Formularios;
 
 import Clases.NodoPersona;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -48,15 +49,27 @@ public class MostrarTablaAVL extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        botonRegresar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableDatos = new javax.swing.JTable();
-        botonRegresar = new javax.swing.JButton();
-        botonBuscar = new javax.swing.JButton();
         jTextFieldBuscar = new javax.swing.JTextField();
         botonReiniciar = new javax.swing.JButton();
         botonGraficar = new javax.swing.JButton();
+        botonBuscar = new javax.swing.JButton();
+        jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        botonRegresar.setText("Regresar");
+        botonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegresarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, -1, -1));
 
         jTableDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -71,21 +84,10 @@ public class MostrarTablaAVL extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableDatos);
 
-        botonRegresar.setText("Regresar");
-        botonRegresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonRegresarActionPerformed(evt);
-            }
-        });
-
-        botonBuscar.setText("Buscar");
-        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBuscarActionPerformed(evt);
-            }
-        });
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, 430));
 
         jTextFieldBuscar.setText("DPI");
+        jPanel1.add(jTextFieldBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 440, 252, -1));
 
         botonReiniciar.setText("Reiniciar Tabla");
         botonReiniciar.addActionListener(new java.awt.event.ActionListener() {
@@ -93,47 +95,36 @@ public class MostrarTablaAVL extends javax.swing.JFrame {
                 botonReiniciarActionPerformed(evt);
             }
         });
+        jPanel1.add(botonReiniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 480, 195, -1));
 
         botonGraficar.setText("Mostrar grafico");
+        botonGraficar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGraficarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonGraficar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 480, 129, -1));
+
+        botonBuscar.setText("Buscar");
+        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 440, -1, -1));
+
+        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/fondo blue dw.jpg"))); // NOI18N
+        jPanel1.add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, 520));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(botonRegresar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 734, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(botonReiniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(botonGraficar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(botonBuscar)))
-                .addGap(38, 38, 38))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botonBuscar)
-                            .addComponent(jTextFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botonReiniciar)
-                            .addComponent(botonGraficar)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(botonRegresar)))
-                .addContainerGap(16, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -160,6 +151,35 @@ tmp = ProyectoFinalCovid.formu.arbolAVL.BuscarNodo(dpiBuscar);
        mt.setRowCount(0);  //Limpiar tabla
        PreOrden(ProyectoFinalCovid.formu.arbolAVL.raiz);
     }//GEN-LAST:event_botonReiniciarActionPerformed
+
+    public void generarImagen(String dotPath, String outputPath) {
+    try {
+        Process process = Runtime.getRuntime().exec("dot -Tpng " + dotPath + " -o " + outputPath);
+        process.waitFor();
+    } catch (IOException | InterruptedException e) {
+        e.printStackTrace();
+    }
+}
+
+private void abrirImagen(String imagePath) {
+    try {
+        Runtime.getRuntime().exec("explorer " + imagePath);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+    
+    private void botonGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGraficarActionPerformed
+       try {
+            String dotPath = "arbolAVL.dot";
+            String outputPath = "arbolAVL.png";
+            ProyectoFinalCovid.formu.arbolAVL.generarDot(dotPath);
+            generarImagen(dotPath, outputPath);
+            abrirImagen(outputPath);
+    } catch (IOException e) {
+        e.printStackTrace();
+        }
+    }//GEN-LAST:event_botonGraficarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,6 +222,8 @@ tmp = ProyectoFinalCovid.formu.arbolAVL.BuscarNodo(dpiBuscar);
     private javax.swing.JButton botonGraficar;
     private javax.swing.JButton botonRegresar;
     private javax.swing.JButton botonReiniciar;
+    private javax.swing.JLabel jLabelFondo;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableDatos;
     private javax.swing.JTextField jTextFieldBuscar;

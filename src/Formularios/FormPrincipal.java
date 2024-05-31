@@ -12,11 +12,16 @@ import javax.swing.JFileChooser;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.text.DecimalFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import proyectofinalcovid.ProyectoFinalCovid;
 
 /**
@@ -48,14 +53,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        botonSeleccion = new javax.swing.JButton();
-        botonMostrar = new javax.swing.JButton();
-        botonEliminar = new javax.swing.JButton();
-        botonAñadir = new javax.swing.JButton();
-        botonActualizar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        botonGuardarArchivo = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         botonSeleccionAVL = new javax.swing.JButton();
         botonMostrarAVL = new javax.swing.JButton();
@@ -63,94 +61,24 @@ public class FormPrincipal extends javax.swing.JFrame {
         botonAñadirAVL = new javax.swing.JButton();
         botonActualizarAVL = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        botonGuardarArchivo1 = new javax.swing.JButton();
+        botonGuardarArchivoAVL = new javax.swing.JButton();
+        botonEncriptarAVL = new javax.swing.JButton();
+        botonComprimirAVL = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        botonEliminar = new javax.swing.JButton();
+        botonActualizar = new javax.swing.JButton();
+        botonGuardarArchivo = new javax.swing.JButton();
+        botonMostrar = new javax.swing.JButton();
+        botonSeleccion = new javax.swing.JButton();
+        botonAñadir = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        botonEncriptar = new javax.swing.JButton();
+        botonComprimir = new javax.swing.JButton();
+        jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
-        jPanel1.setForeground(new java.awt.Color(153, 255, 255));
-
-        botonSeleccion.setText("Seleccionar archivo");
-        botonSeleccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonSeleccionActionPerformed(evt);
-            }
-        });
-
-        botonMostrar.setText("Mostrar datos");
-        botonMostrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonMostrarActionPerformed(evt);
-            }
-        });
-
-        botonEliminar.setText("Eliminar nodo");
-        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEliminarActionPerformed(evt);
-            }
-        });
-
-        botonAñadir.setText("Anadir nodo al arbol");
-        botonAñadir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAñadirActionPerformed(evt);
-            }
-        });
-
-        botonActualizar.setText("Actualizar nodo");
-        botonActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonActualizarActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Arbol Binario");
-
-        botonGuardarArchivo.setText("Guardar en Archivo");
-        botonGuardarArchivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonGuardarArchivoActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(botonAñadir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonMostrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonSeleccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonGuardarArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(65, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(botonAñadir)
-                .addGap(18, 18, 18)
-                .addComponent(botonSeleccion)
-                .addGap(17, 17, 17)
-                .addComponent(botonMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(botonGuardarArchivo)
-                .addGap(18, 18, 18)
-                .addComponent(botonActualizar)
-                .addGap(17, 17, 17)
-                .addComponent(botonEliminar)
-                .addContainerGap(96, Short.MAX_VALUE))
-        );
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 255));
         jPanel2.setForeground(new java.awt.Color(153, 255, 255));
@@ -191,12 +119,27 @@ public class FormPrincipal extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Arbol AVL");
 
-        botonGuardarArchivo1.setText("Guardar en Archivo");
-        botonGuardarArchivo1.addActionListener(new java.awt.event.ActionListener() {
+        botonGuardarArchivoAVL.setText("Guardar en Archivo");
+        botonGuardarArchivoAVL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonGuardarArchivo1ActionPerformed(evt);
+                botonGuardarArchivoAVLActionPerformed(evt);
+            }
+        });
+
+        botonEncriptarAVL.setText("Encriptar / Desencriptar");
+        botonEncriptarAVL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEncriptarAVLActionPerformed(evt);
+            }
+        });
+
+        botonComprimirAVL.setText("Comprimir Archivo");
+        botonComprimirAVL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonComprimirAVLActionPerformed(evt);
             }
         });
 
@@ -204,59 +147,170 @@ public class FormPrincipal extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botonGuardarArchivo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonAñadirAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonMostrarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonSeleccionAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonActualizarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonMostrarAVL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonGuardarArchivoAVL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonActualizarAVL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonEliminarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(14, 14, 14)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                    .addComponent(botonAñadirAVL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                    .addComponent(botonSeleccionAVL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonEncriptarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonComprimirAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addGap(15, 15, 15)
                 .addComponent(jLabel2)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addComponent(botonAñadirAVL)
                 .addGap(18, 18, 18)
                 .addComponent(botonSeleccionAVL)
-                .addGap(17, 17, 17)
-                .addComponent(botonMostrarAVL)
-                .addGap(18, 18, 18)
-                .addComponent(botonGuardarArchivo1)
                 .addGap(18, 18, 18)
                 .addComponent(botonActualizarAVL)
-                .addGap(17, 17, 17)
+                .addGap(18, 18, 18)
                 .addComponent(botonEliminarAVL)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(botonMostrarAVL)
+                .addGap(18, 18, 18)
+                .addComponent(botonGuardarArchivoAVL)
+                .addGap(18, 18, 18)
+                .addComponent(botonEncriptarAVL)
+                .addGap(18, 18, 18)
+                .addComponent(botonComprimirAVL)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
+
+        jPanel4.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, 390));
+
+        jPanel5.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel5.setForeground(new java.awt.Color(153, 255, 255));
+
+        botonEliminar.setText("Eliminar nodo");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
+
+        botonActualizar.setText("Actualizar nodo");
+        botonActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonActualizarActionPerformed(evt);
+            }
+        });
+
+        botonGuardarArchivo.setText("Guardar en Archivo");
+        botonGuardarArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarArchivoActionPerformed(evt);
+            }
+        });
+
+        botonMostrar.setText("Mostrar datos");
+        botonMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonMostrarActionPerformed(evt);
+            }
+        });
+
+        botonSeleccion.setText("Seleccionar archivo");
+        botonSeleccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSeleccionActionPerformed(evt);
+            }
+        });
+
+        botonAñadir.setText("Anadir nodo al arbol");
+        botonAñadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAñadirActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Arbol Binario");
+
+        botonEncriptar.setText("Encriptar / Desencriptar");
+        botonEncriptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEncriptarActionPerformed(evt);
+            }
+        });
+
+        botonComprimir.setText("Comprimir Archivo");
+        botonComprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonComprimirActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(botonComprimir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonEncriptar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonAñadir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonSeleccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonMostrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonGuardarArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(679, 679, 679))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(botonAñadir)
+                .addGap(18, 18, 18)
+                .addComponent(botonSeleccion)
+                .addGap(18, 18, 18)
+                .addComponent(botonActualizar)
+                .addGap(17, 17, 17)
+                .addComponent(botonEliminar)
+                .addGap(18, 18, 18)
+                .addComponent(botonMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(botonGuardarArchivo)
+                .addGap(18, 18, 18)
+                .addComponent(botonEncriptar)
+                .addGap(18, 18, 18)
+                .addComponent(botonComprimir)
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 190, 390));
+
+        jLabelFondo.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/fondo.jpg"))); // NOI18N
+        jPanel4.add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 420));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 41, Short.MAX_VALUE))
         );
 
         pack();
@@ -265,79 +319,88 @@ public class FormPrincipal extends javax.swing.JFrame {
     private void botonSeleccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSeleccionActionPerformed
         
         //Opcion ingresar solo unos cuantos nodos o todos los nodos
-        String[] options = {"Ingresar cantidad específica", "Ingresar todos los nodos"};
-        int option = JOptionPane.showOptionDialog(null,
-                "¿Qué acción desea realizar?",
-                "Selección de Ingreso",
-                JOptionPane.DEFAULT_OPTION,
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                options,
-                options[0]);
+      String[] options = {"Ingresar cantidad específica", "Ingresar todos los nodos"};
+    int option = JOptionPane.showOptionDialog(null,
+            "¿Qué acción desea realizar?",
+            "Selección de Ingreso",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            options,
+            options[0]);
 
-        int cantidad = 0;
-        boolean validInput = false;
-        
-        
-        //Validacion solo numeros y no texto
-        if (option == 0) {
-            while (!validInput) {
-                try {
-                    String input = JOptionPane.showInputDialog(null, "¿Cuántos nodos desea ingresar?", "Ingreso", JOptionPane.QUESTION_MESSAGE);
-                    if (input == null) {
-                        //El usuario presionó cancelar
-                        return;
-                    }
-                    cantidad = Integer.parseInt(input);
-                    validInput = true; //La entrada es válida
-                } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "Por favor, ingrese un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+    int cantidad = 0;
+    boolean validInput = false;
+
+    if (option == 0) {
+        while (!validInput) {
+            try {
+                String input = JOptionPane.showInputDialog(null, "¿Cuántos nodos desea ingresar?", "Ingreso", JOptionPane.QUESTION_MESSAGE);
+                if (input == null) {
+                    return;
                 }
+                cantidad = Integer.parseInt(input);
+                validInput = true;
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Por favor, ingrese un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        
-        //Escogencia del archivo txt
-        JFileChooser escogerArchivo = new JFileChooser();
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de Texto (.txt)", "txt");
-        escogerArchivo.setFileFilter(filtro);
-        int valorRetornado = escogerArchivo.showOpenDialog(null);
-        if (valorRetornado == JFileChooser.APPROVE_OPTION) {
-            File archivoSeleccionado = escogerArchivo.getSelectedFile();
-            try (BufferedReader br = new BufferedReader(new FileReader(archivoSeleccionado))) {
-                String linea;
-                int contador = 0;
-                while ((linea = br.readLine()) != null) {
-                    if (option == 0 && contador >= cantidad) {
-                        break;
-                    }
-                    String[] partes = separarDatos(linea);
-                    if (partes != null) {
-                        String nombre = partes[0];
-                        double dpi = Double.parseDouble(partes[1]);
-                        String departamento = partes.length > 2 ? partes[2] : null;
-                        String municipio = partes.length > 3 ? partes[3] : null;
-                        String lugarVacunacion = partes.length > 4 ? partes[4] : null;
-                        int cDosis = partes.length > 5 ? Integer.parseInt(partes[5]) : 0;
-                        String dVacuna1 = partes.length > 6 ? partes[6] : null;
-                        String dVacuna2 = partes.length > 7 ? partes[7] : null;
-                        String dVacuna3 = partes.length > 8 ? partes[8] : null;
+    }
 
-                        ArbolBinario.AgregarNodo(nombre, departamento, municipio, lugarVacunacion, dpi, cDosis, dVacuna1, dVacuna2, dVacuna3);
-                        contadorNodos++;
-                    }
+    JFileChooser escogerArchivo = new JFileChooser();
+    FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de Texto (.txt)", "txt");
+    escogerArchivo.setFileFilter(filtro);
+    int valorRetornado = escogerArchivo.showOpenDialog(null);
+    if (valorRetornado == JFileChooser.APPROVE_OPTION) {
+        File archivoSeleccionado = escogerArchivo.getSelectedFile();
+        try (BufferedReader br = new BufferedReader(new FileReader(archivoSeleccionado))) {
+            String linea;
+            int contador = 0;
+            while ((linea = br.readLine()) != null) {
+                if (option == 0 && contador >= cantidad) {
+                    break;
                 }
-                JOptionPane.showMessageDialog(null, "Datos ingresados correctamente en el árbol.");
-            } catch (IOException e) {
-                e.printStackTrace();
+                String[] partes = separarDatos(linea);
+                if (partes != null) {
+                    String nombre = partes[0];
+                    double dpi = Double.parseDouble(partes[1]);
+                    String departamento = !"null".equals(partes[2]) ? partes[2] : null;
+                    String municipio = !"null".equals(partes[3]) ? partes[3] : null;
+                    String lugarVacunacion = !"null".equals(partes[4]) ? partes[4] : null;
+
+                    // Manejo correcto de la conversión a entero
+                    int cDosis = 0;
+                    try {
+                        if (!"null".equals(partes[5])) {
+                            cDosis = Integer.parseInt(partes[5]);
+                        }
+                    } catch (NumberFormatException e) {
+                        cDosis = 0; // o algún valor por defecto, o manejar el error de alguna manera
+                    }
+
+                    String dVacuna1 = !"null".equals(partes[6]) ? partes[6] : null;
+                    String dVacuna2 = !"null".equals(partes[7]) ? partes[7] : null;
+                    String dVacuna3 = !"null".equals(partes[8]) ? partes[8] : null;
+
+                    arbol.AgregarNodo(nombre, departamento, municipio, lugarVacunacion, dpi, cDosis, dVacuna1, dVacuna2, dVacuna3);
+                    contador++;
+                }
+            }
+            JOptionPane.showMessageDialog(null, "Datos ingresados correctamente en el árbol.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error en formato de número en el archivo.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-    } 
-    
-   private static String[] separarDatos(String linea) {
+    }//GEN-LAST:event_botonSeleccionActionPerformed
+
+    private static String[] separarDatos(String linea) {
     // Expresión regular para separar el nombre, DPI y otros campos
-        Pattern pattern = Pattern.compile("(.+?)\\s+(\\d+)(.*)");
-        Matcher matcher = pattern.matcher(linea);
-         if (matcher.matches()) {
+    Pattern pattern = Pattern.compile("(.+?)\\s+(\\d+)(.*)");
+    Matcher matcher = pattern.matcher(linea);
+    if (matcher.matches()) {
         String nombre = matcher.group(1).trim();
         String dpi = matcher.group(2).trim();
         String[] otrosDatos = matcher.group(3).trim().split("\\s+");
@@ -345,16 +408,16 @@ public class FormPrincipal extends javax.swing.JFrame {
         String departamento = otrosDatos.length > 0 ? otrosDatos[0] : null;
         String municipio = otrosDatos.length > 1 ? otrosDatos[1] : null;
         String lugarVacunacion = otrosDatos.length > 2 ? otrosDatos[2] : null;
-        int cDosis = otrosDatos.length > 3 ? Integer.parseInt(otrosDatos[3]) : 0;
+        String cDosis = otrosDatos.length > 3 ? otrosDatos[3] : "0"; // No convertir aquí
         String dVacuna1 = otrosDatos.length > 4 ? otrosDatos[4] : null;
         String dVacuna2 = otrosDatos.length > 5 ? otrosDatos[5] : null;
         String dVacuna3 = otrosDatos.length > 6 ? otrosDatos[6] : null;
 
-        return new String[]{nombre, dpi, departamento, municipio, lugarVacunacion, String.valueOf(cDosis), dVacuna1, dVacuna2, dVacuna3};
+        return new String[]{nombre, dpi, departamento, municipio, lugarVacunacion, cDosis, dVacuna1, dVacuna2, dVacuna3};
     }
-    return null;   
-    }//GEN-LAST:event_botonSeleccionActionPerformed
-
+    return null;
+}
+    
     private void botonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarActionPerformed
         MostrarTablaBinario tabla = new MostrarTablaBinario();
         System.out.println(" ");
@@ -397,72 +460,81 @@ public class FormPrincipal extends javax.swing.JFrame {
     private void botonSeleccionAVLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSeleccionAVLActionPerformed
 
         //Opcion ingresar solo unos cuantos nodos o todos los nodos
-        String[] options = {"Ingresar cantidad específica", "Ingresar todos los nodos"};
-        int option = JOptionPane.showOptionDialog(null,
-                "¿Qué acción desea realizar?",
-                "Selección de Ingreso",
-                JOptionPane.DEFAULT_OPTION,
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                options,
-                options[0]);
+      String[] options = {"Ingresar cantidad específica", "Ingresar todos los nodos"};
+      int option = JOptionPane.showOptionDialog(null,
+            "¿Qué acción desea realizar?",
+            "Selección de Ingreso",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            options,
+            options[0]);
 
-        int cantidad = 0;
-        boolean validInput = false;
-        
-        
-        //Validacion solo numeros y no texto
-        if (option == 0) {
-            while (!validInput) {
-                try {
-                    String input = JOptionPane.showInputDialog(null, "¿Cuántos nodos desea ingresar?", "Ingreso", JOptionPane.QUESTION_MESSAGE);
-                    if (input == null) {
-                        //El usuario presionó cancelar
-                        return;
-                    }
-                    cantidad = Integer.parseInt(input);
-                    validInput = true; // La entrada es válida
-                } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "Por favor, ingrese un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+    int cantidad = 0;
+    boolean validInput = false;
+
+    if (option == 0) {
+        while (!validInput) {
+            try {
+                String input = JOptionPane.showInputDialog(null, "¿Cuántos nodos desea ingresar?", "Ingreso", JOptionPane.QUESTION_MESSAGE);
+                if (input == null) {
+                    return;
                 }
+                cantidad = Integer.parseInt(input);
+                validInput = true;
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Por favor, ingrese un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        
-        //Escogencia del archivo txt
-        JFileChooser escogerArchivo = new JFileChooser();
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de Texto (.txt)", "txt");
-        escogerArchivo.setFileFilter(filtro);
-        int valorRetornado = escogerArchivo.showOpenDialog(null);
-        if (valorRetornado == JFileChooser.APPROVE_OPTION) {
-            File archivoSeleccionado = escogerArchivo.getSelectedFile();
-            try (BufferedReader br = new BufferedReader(new FileReader(archivoSeleccionado))) {
-                String linea;
-                int contador = 0;
-                while ((linea = br.readLine()) != null) {
-                    if (option == 0 && contador >= cantidad) {
-                        break;
-                    }
-                    String[] partes = separarDatos(linea);
-                    if (partes != null) {
-                        String nombre = partes[0];
-                        double dpi = Double.parseDouble(partes[1]);
-                        String departamento = partes.length > 2 ? partes[2] : null;
-                        String municipio = partes.length > 3 ? partes[3] : null;
-                        String lugarVacunacion = partes.length > 4 ? partes[4] : null;
-                        int cDosis = partes.length > 5 ? Integer.parseInt(partes[5]) : 0;
-                        String dVacuna1 = partes.length > 6 ? partes[6] : null;
-                        String dVacuna2 = partes.length > 7 ? partes[7] : null;
-                        String dVacuna3 = partes.length > 8 ? partes[8] : null;
+    }
 
-                        ArbolBinario.AgregarNodo(nombre, departamento, municipio, lugarVacunacion, dpi, cDosis, dVacuna1, dVacuna2, dVacuna3); 
-                        contadorNodos++;
-                    }
+    JFileChooser escogerArchivo = new JFileChooser();
+    FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de Texto (.txt)", "txt");
+    escogerArchivo.setFileFilter(filtro);
+    int valorRetornado = escogerArchivo.showOpenDialog(null);
+    if (valorRetornado == JFileChooser.APPROVE_OPTION) {
+        File archivoSeleccionado = escogerArchivo.getSelectedFile();
+        try (BufferedReader br = new BufferedReader(new FileReader(archivoSeleccionado))) {
+            String linea;
+            int contador = 0;
+            while ((linea = br.readLine()) != null) {
+                if (option == 0 && contador >= cantidad) {
+                    break;
                 }
-                JOptionPane.showMessageDialog(null, "Datos ingresados correctamente en el árbol.");
-            } catch (IOException e) {
-                e.printStackTrace();
+                String[] partes = separarDatos(linea);
+                if (partes != null) {
+                    String nombre = partes[0];
+                    double dpi = Double.parseDouble(partes[1]);
+                    String departamento = !"null".equals(partes[2]) ? partes[2] : null;
+                    String municipio = !"null".equals(partes[3]) ? partes[3] : null;
+                    String lugarVacunacion = !"null".equals(partes[4]) ? partes[4] : null;
+
+                    // Manejo correcto de la conversión a entero
+                    int cDosis = 0;
+                    try {
+                        if (!"null".equals(partes[5])) {
+                            cDosis = Integer.parseInt(partes[5]);
+                        }
+                    } catch (NumberFormatException e) {
+                        cDosis = 0; // o algún valor por defecto, o manejar el error de alguna manera
+                    }
+
+                    String dVacuna1 = !"null".equals(partes[6]) ? partes[6] : null;
+                    String dVacuna2 = !"null".equals(partes[7]) ? partes[7] : null;
+                    String dVacuna3 = !"null".equals(partes[8]) ? partes[8] : null;
+
+                    arbolAVL.AgregarNodo(nombre, departamento, municipio, lugarVacunacion, dpi, cDosis, dVacuna1, dVacuna2, dVacuna3);
+                    contador++;
+                }
             }
-        }        
+            JOptionPane.showMessageDialog(null, "Datos ingresados correctamente en el árbol.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error en formato de número en el archivo.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }      
     }//GEN-LAST:event_botonSeleccionAVLActionPerformed
  
          /*private void botonBuscarAVLActionPerformed(java.awt.event.ActionEvent evt) {                                               
@@ -533,18 +605,18 @@ public class FormPrincipal extends javax.swing.JFrame {
         
         switch(option){
             case 0:
-                arbol.guardarEnArchivoPreOrden("arbol_binariol_preorden.txt");
+                arbol.guardarEnArchivoPreOrden("arbol_binario_preorden.txt");
                 break;
                 case 1:
-                arbol.guardarEnArchivoInOrden("arbol_binariol_inorden.txt");
+                arbol.guardarEnArchivoInOrden("arbol_binario_inorden.txt");
                 break;
                 case 2  :
-                arbol.guardarEnArchivoPostOrden("arbol_binariol_postorden.txt");
+                arbol.guardarEnArchivoPostOrden("arbol_binario_postorden.txt");
                 break;
         }
     }//GEN-LAST:event_botonGuardarArchivoActionPerformed
 
-    private void botonGuardarArchivo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarArchivo1ActionPerformed
+    private void botonGuardarArchivoAVLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarArchivoAVLActionPerformed
        String[] options = {"Ingresar en PreOrden", "Ingresar en InOrden", "Ingresar en PostOrden"};
         int option = JOptionPane.showOptionDialog(null,
                 "¿Qué acción desea realizar?",
@@ -566,8 +638,284 @@ public class FormPrincipal extends javax.swing.JFrame {
                 arbolAVL.guardarEnArchivoPostOrden("arbolAVL_postorden.txt");
                 break;
         }           
-    }//GEN-LAST:event_botonGuardarArchivo1ActionPerformed
+    }//GEN-LAST:event_botonGuardarArchivoAVLActionPerformed
 
+    private void botonEncriptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEncriptarActionPerformed
+        String ruta = null;
+        File archivo;
+
+                String[] options = {"Encriptar", "Desencriptar"};
+                int option = JOptionPane.showOptionDialog(null,
+                "¿Qué acción desea realizar?",
+                "Selección de accion de archivo",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[0]);
+        
+        switch(option){
+            case 0:
+               String[]options1 = {"Encriptar Archivo PreOrden", "Encriptar Archivo InOrden", "Encriptar Archivo PostOrden"};
+                int option1 = JOptionPane.showOptionDialog(null,
+                "¿Qué acción desea realizar?",
+                "Selección de encripcion de archivo",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options1,
+                options1[0]);
+                
+                switch(option1){
+                    case 0: //Encriptar binario preorden
+                        ruta = "arbol_binario_preorden.txt";  
+                        archivo = new File(ruta);
+                        {
+                    try {
+                    encriptarArchivo(archivo);  
+                    JOptionPane.showMessageDialog(null, "Encripcion Exitosa", "Encripcion", JOptionPane.INFORMATION_MESSAGE);
+                        } catch (IOException ex) {
+                    Logger.getLogger(FormPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                        break;
+                    case 1: //Encriptar binario inorden
+                        ruta = "arbol_binario_inorden.txt";
+                        archivo = new File(ruta);
+                        {
+                    try {
+                    encriptarArchivo(archivo);
+                    JOptionPane.showMessageDialog(null, "Encripcion Exitosa", "Encripcion", JOptionPane.INFORMATION_MESSAGE);
+                        } catch (IOException ex) {
+                    Logger.getLogger(FormPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                        break;
+                    case 2: //Encriptar binario postorden
+                        ruta = "arbol_binario_postorden.txt";
+                        archivo = new File(ruta);
+                        {
+                    try {
+                    encriptarArchivo(archivo);
+                    JOptionPane.showMessageDialog(null, "Encripcion Exitosa", "Encripcion", JOptionPane.INFORMATION_MESSAGE);
+                        } catch (IOException ex) {
+                    Logger.getLogger(FormPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                        break;
+                }
+                break;
+                
+            case 1:
+                String[] options2 = {"Desencriptar Archivo PreOrden", "Desencriptar Archivo InOrden", "Desencriptar Archivo PostOrden"};
+                int option2 = JOptionPane.showOptionDialog(null,
+                "¿Qué acción desea realizar?",
+                "Selección de encripcion de archivo",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options2,
+                options2[0]);
+                
+                switch(option2){
+                    case 0: //Desencriptar binario postorden
+                        ruta = "arbol_binario_preorden.txt";
+                        archivo = new File(ruta);
+                        {
+                    try {
+                    desencriptarArchivo(archivo);
+                    JOptionPane.showMessageDialog(null, "Desencripcion Exitosa", "Desencripcion", JOptionPane.INFORMATION_MESSAGE);
+                        } catch (IOException ex) {
+                    Logger.getLogger(FormPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                        break;
+                        case 1: //Desencriptar binario inorden
+                        ruta = "arbol_binario_inorden.txt";
+                        archivo = new File(ruta);
+                        {
+                    try {
+                    desencriptarArchivo(archivo);
+                    JOptionPane.showMessageDialog(null, "Desencripcion Exitosa", "Desencripcion", JOptionPane.INFORMATION_MESSAGE);
+                        } catch (IOException ex) {
+                    Logger.getLogger(FormPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                        break;
+                        case 2: //Desencriptar binario postorden
+                        ruta = "arbol_binario_postorden.txt";
+                        archivo = new File(ruta);
+                        {
+                    try {
+                    desencriptarArchivo(archivo);
+                    JOptionPane.showMessageDialog(null, "Desencripcion Exitosa", "Desencripcion", JOptionPane.INFORMATION_MESSAGE);
+                        } catch (IOException ex) {
+                    Logger.getLogger(FormPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                        break;
+                }
+                break;   
+        }
+    }//GEN-LAST:event_botonEncriptarActionPerformed
+
+    private void botonEncriptarAVLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEncriptarAVLActionPerformed
+        String ruta = null;
+        File archivo;
+
+                String[] options = {"Encriptar", "Desencriptar"};
+                int option = JOptionPane.showOptionDialog(null,
+                "¿Qué acción desea realizar?",
+                "Selección de accion de archivo",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[0]);
+        
+        switch(option){
+            case 0:
+               String[]options1 = {"Encriptar Archivo PreOrden", "Encriptar Archivo InOrden", "Encriptar Archivo PostOrden"};
+                int option1 = JOptionPane.showOptionDialog(null,
+                "¿Qué acción desea realizar?",
+                "Selección de encripcion de archivo",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options1,
+                options1[0]);
+                
+                switch(option1){
+                    case 0: //Encriptar binario preorden
+                        ruta = "arbolAVL_preorden.txt";  
+                        archivo = new File(ruta);
+                        {
+                    try {
+                    encriptarArchivo(archivo);  
+                    JOptionPane.showMessageDialog(null, "Encripcion Exitosa", "Encripcion", JOptionPane.INFORMATION_MESSAGE);
+                        } catch (IOException ex) {
+                    Logger.getLogger(FormPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                        break;
+                    case 1: //Encriptar binario inorden
+                        ruta = "arbolAVL_inorden.txt";
+                        archivo = new File(ruta);
+                        {
+                    try {
+                    encriptarArchivo(archivo);
+                    JOptionPane.showMessageDialog(null, "Encripcion Exitosa", "Encripcion", JOptionPane.INFORMATION_MESSAGE);
+                        } catch (IOException ex) {
+                    Logger.getLogger(FormPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                        break;
+                    case 2: //Encriptar binario postorden
+                        ruta = "arbolAVL_postorden.txt";
+                        archivo = new File(ruta);
+                        {
+                    try {
+                    encriptarArchivo(archivo);
+                    JOptionPane.showMessageDialog(null, "Encripcion Exitosa", "Encripcion", JOptionPane.INFORMATION_MESSAGE);
+                        } catch (IOException ex) {
+                    Logger.getLogger(FormPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                        break;
+                }
+                break;
+                
+            case 1:
+                String[] options2 = {"Desencriptar Archivo PreOrden", "Desencriptar Archivo InOrden", "Desencriptar Archivo PostOrden"};
+                int option2 = JOptionPane.showOptionDialog(null,
+                "¿Qué acción desea realizar?",
+                "Selección de encripcion de archivo",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options2,
+                options2[0]);
+                
+                switch(option2){
+                    case 0: //Desencriptar binario preorden
+                        ruta = "arbolAVL_preorden.txt";
+                        archivo = new File(ruta);
+                        {
+                    try {
+                    desencriptarArchivo(archivo);
+                    JOptionPane.showMessageDialog(null, "Desencripcion Exitosa", "Desencripcion", JOptionPane.INFORMATION_MESSAGE);
+                        } catch (IOException ex) {
+                    Logger.getLogger(FormPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                        break;
+                        case 1: //Desencriptar binario inorden
+                        ruta = "arbolAVL_inorden.txt";
+                        archivo = new File(ruta);
+                        {
+                    try {
+                    desencriptarArchivo(archivo);
+                    JOptionPane.showMessageDialog(null, "Desencripcion Exitosa", "Desencripcion", JOptionPane.INFORMATION_MESSAGE);
+                        } catch (IOException ex) {
+                    Logger.getLogger(FormPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                        break;
+                        case 2: //Desencriptar binario postorden
+                        ruta = "arbolAVL_postorden.txt";
+                        archivo = new File(ruta);
+                        {
+                    try {
+                    desencriptarArchivo(archivo);
+                    JOptionPane.showMessageDialog(null, "Desencripcion Exitosa", "Desencripcion", JOptionPane.INFORMATION_MESSAGE);
+                        } catch (IOException ex) {
+                    Logger.getLogger(FormPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                        break;
+                }
+                break;   
+        }
+    }//GEN-LAST:event_botonEncriptarAVLActionPerformed
+
+    private void botonComprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonComprimirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonComprimirActionPerformed
+
+    private void botonComprimirAVLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonComprimirAVLActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonComprimirAVLActionPerformed
+
+    public static void encriptarArchivo(File archivo) throws IOException {
+        Path path = Paths.get(archivo.getAbsolutePath());
+        String contenido = new String(Files.readAllBytes(path));
+        String contenidoEncriptado = encriptar(contenido);
+        Files.write(path, contenidoEncriptado.getBytes());
+    }
+    
+    private static String encriptar(String texto) {
+        StringBuilder resultado = new StringBuilder();
+        for (char caracter : texto.toCharArray()) {
+            resultado.append((char) (caracter + 10));
+        }
+        return resultado.toString();
+    }
+    
+    public static void desencriptarArchivo(File archivo) throws IOException {
+        Path path = Paths.get(archivo.getAbsolutePath());
+        String contenido = new String(Files.readAllBytes(path));
+        String contenidoDesencriptado = desencriptar(contenido);
+        Files.write(path, contenidoDesencriptado.getBytes());
+    }
+    
+    private static String desencriptar(String texto) {
+        StringBuilder resultado = new StringBuilder();
+        for (char caracter : texto.toCharArray()) {
+            resultado.append((char) (caracter - 10));
+        }
+        return resultado.toString();
+    }
+    
      /*private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {                                            
         double numero;
         if (!arbol.EstaVacio()){
@@ -624,17 +972,23 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton botonActualizarAVL;
     private javax.swing.JButton botonAñadir;
     private javax.swing.JButton botonAñadirAVL;
+    private javax.swing.JButton botonComprimir;
+    private javax.swing.JButton botonComprimirAVL;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonEliminarAVL;
+    private javax.swing.JButton botonEncriptar;
+    private javax.swing.JButton botonEncriptarAVL;
     private javax.swing.JButton botonGuardarArchivo;
-    private javax.swing.JButton botonGuardarArchivo1;
+    private javax.swing.JButton botonGuardarArchivoAVL;
     private javax.swing.JButton botonMostrar;
     private javax.swing.JButton botonMostrarAVL;
     private javax.swing.JButton botonSeleccion;
     private javax.swing.JButton botonSeleccionAVL;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabelFondo;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     // End of variables declaration//GEN-END:variables
 }

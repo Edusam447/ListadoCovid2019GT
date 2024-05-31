@@ -30,7 +30,7 @@ public byte diferenciador;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        botonEditar = new javax.swing.JButton();
+        botonAgregar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -57,10 +57,10 @@ public byte diferenciador;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        botonEditar.setText("Agregar");
-        botonEditar.addActionListener(new java.awt.event.ActionListener() {
+        botonAgregar.setText("Agregar");
+        botonAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEditarActionPerformed(evt);
+                botonAgregarActionPerformed(evt);
             }
         });
 
@@ -194,7 +194,7 @@ public byte diferenciador;
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jButtonRegresar)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(botonEditar))
+                            .addComponent(botonAgregar))
                         .addComponent(jFormattedTextFieldD2, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jFormattedTextFieldD1)
                         .addComponent(jFormattedTextFieldD3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -252,7 +252,7 @@ public byte diferenciador;
                             .addComponent(jFormattedTextFieldD3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botonEditar)
+                            .addComponent(botonAgregar)
                             .addComponent(jButtonRegresar))))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
@@ -260,22 +260,22 @@ public byte diferenciador;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
+    private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
       int nDosisAux;
-              
+             
       double dpiAux = Double.parseDouble(jTextFieldDpi.getText());
-      String nomAux = jTextFieldNombre.getText();
-      String depAux = jTextFieldDepartamento.getText();
-      String munAux = jTextFieldMunicipio.getText();
-      String lVacAux = jTextFieldLVacunacion.getText();
+      String nomAux = jTextFieldNombre.getText().isEmpty() ? "" : jTextFieldNombre.getText();
+      String depAux = jTextFieldDepartamento.getText().isEmpty() ? "" : jTextFieldDepartamento.getText();
+      String munAux = jTextFieldMunicipio.getText().isEmpty() ?  "" : jTextFieldMunicipio.getText();
+      String lVacAux = jTextFieldLVacunacion.getText().isEmpty() ? "" :  jTextFieldLVacunacion.getText();
       if(jTextFieldNDosis.getText().isEmpty()){
           nDosisAux = 0;
       }else{
         nDosisAux = Integer.parseInt(jTextFieldNDosis.getText());  
       }
-      String fV1aux = jFormattedTextFieldD1.getText();
-      String fV2aux = jFormattedTextFieldD2.getText();
-      String fV3aux = jFormattedTextFieldD3.getText();
+      String fV1aux = jFormattedTextFieldD1.getText().equals("  /  /    ") ?  "" : jFormattedTextFieldD1.getText();
+      String fV2aux = jFormattedTextFieldD2.getText().equals("  /  /    ") ? "" : jFormattedTextFieldD2.getText();
+      String fV3aux = jFormattedTextFieldD3.getText().equals("  /  /    ") ? "" : jFormattedTextFieldD3.getText();
       
       switch(diferenciador){
           case 0:
@@ -313,7 +313,7 @@ public byte diferenciador;
       }
       ProyectoFinalCovid.formu.contadorNodos++;
       ProyectoFinalCovid.formu.setVisible(true);
-    }//GEN-LAST:event_botonEditarActionPerformed
+    }//GEN-LAST:event_botonAgregarActionPerformed
 
     private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
     this.setVisible(false);
@@ -392,7 +392,7 @@ public byte diferenciador;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonEditar;
+    private javax.swing.JButton botonAgregar;
     private javax.swing.JButton jButtonRegresar;
     private javax.swing.JFormattedTextField jFormattedTextFieldD1;
     private javax.swing.JFormattedTextField jFormattedTextFieldD2;
