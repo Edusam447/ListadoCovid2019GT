@@ -6,6 +6,8 @@ package Formularios;
 
 import Clases.ArbolAVL;
 import Clases.ArbolBinario;
+import Clases.Compresor;
+import Clases.Decompresor;
 import Clases.NodoPersona;
 import java.io.BufferedReader;
 import javax.swing.JFileChooser;
@@ -136,7 +138,7 @@ public class FormPrincipal extends javax.swing.JFrame {
             }
         });
 
-        botonComprimirAVL.setText("Comprimir Archivo");
+        botonComprimirAVL.setText("Comprimir / Descomprimir");
         botonComprimirAVL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonComprimirAVLActionPerformed(evt);
@@ -155,7 +157,7 @@ public class FormPrincipal extends javax.swing.JFrame {
                     .addComponent(botonGuardarArchivoAVL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonActualizarAVL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonEliminarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonAñadirAVL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                    .addComponent(botonAñadirAVL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonSeleccionAVL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonEncriptarAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonComprimirAVL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -182,10 +184,10 @@ public class FormPrincipal extends javax.swing.JFrame {
                 .addComponent(botonEncriptarAVL)
                 .addGap(18, 18, 18)
                 .addComponent(botonComprimirAVL)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
-        jPanel4.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, 390));
+        jPanel4.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, -1, 410));
 
         jPanel5.setBackground(new java.awt.Color(204, 255, 255));
         jPanel5.setForeground(new java.awt.Color(153, 255, 255));
@@ -243,7 +245,7 @@ public class FormPrincipal extends javax.swing.JFrame {
             }
         });
 
-        botonComprimir.setText("Comprimir Archivo");
+        botonComprimir.setText("Comprimir / Descomprimir");
         botonComprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonComprimirActionPerformed(evt);
@@ -255,27 +257,29 @@ public class FormPrincipal extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botonComprimir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonEncriptar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonAñadir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonSeleccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonMostrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonGuardarArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(679, 679, 679))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(botonComprimir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonEncriptar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonAñadir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonSeleccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonMostrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonGuardarArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(679, 679, 679))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(17, 17, 17)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(26, 26, 26)
                 .addComponent(botonAñadir)
                 .addGap(18, 18, 18)
                 .addComponent(botonSeleccion)
@@ -291,14 +295,14 @@ public class FormPrincipal extends javax.swing.JFrame {
                 .addComponent(botonEncriptar)
                 .addGap(18, 18, 18)
                 .addComponent(botonComprimir)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
-        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 190, 390));
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 410));
 
         jLabelFondo.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/fondo.jpg"))); // NOI18N
-        jPanel4.add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 420));
+        jPanel4.add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 420));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -308,9 +312,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 41, Short.MAX_VALUE))
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -879,7 +881,85 @@ public class FormPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEncriptarAVLActionPerformed
 
     private void botonComprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonComprimirActionPerformed
-        // TODO add your handling code here:
+        Compresor comp = new Compresor();
+        Decompresor decomp = new Decompresor();
+        String ruta = null;
+
+         String[] options = {"Comprimir", "Descomprimir"};
+                int option = JOptionPane.showOptionDialog(null,
+                "¿Qué acción desea realizar?",
+                "Selección de accion de archivo",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[0]);
+        
+               switch(option){
+                   case 0:
+                       
+         String[] options1 = {"Comprimir Archivo PreOrden", "Comprimir Archivo InOrden", "Comprimir Archivo PostOrden"};
+                int option1 = JOptionPane.showOptionDialog(null,
+                "¿Qué acción desea realizar?",
+                "Selección de accion de archivo",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options1,
+                options1[0]);
+        
+                switch(option1){
+                    case 0:
+                        ruta = "arbol_binario_preorden.txt";
+                        comp.comprimirArchivo(ruta);
+                        JOptionPane.showMessageDialog(null, "Compresion Exitosa", "Compresion", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    case 1:
+                        ruta = "arbol_binario_inorden.txt";
+                        comp.comprimirArchivo(ruta);
+                        JOptionPane.showMessageDialog(null, "Compresion Exitosa", "Compresion", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    case 2:
+                        ruta = "arbol_binario_postorden.txt";
+                        comp.comprimirArchivo(ruta);
+                        JOptionPane.showMessageDialog(null, "Compresion Exitosa", "Compresion", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                }
+                
+                break;
+                
+                   case 1:
+                      
+                String[] options2 = {"Descomprimir Archivo PreOrden", "Descomprimir Archivo InOrden", "Descomprimir Archivo PostOrden"};
+                int option2 = JOptionPane.showOptionDialog(null,
+                "¿Qué acción desea realizar?",
+                "Selección de accion de archivo",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options2,
+                options2[0]);
+        
+                switch(option2){
+                    case 0:
+                        ruta = "arbol_binario_preorden.txt";
+                        decomp.descomprimirArchivo(ruta);
+                        JOptionPane.showMessageDialog(null, "Descompresion Exitosa", "Descompresion", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    case 1:
+                        ruta = "arbol_binario_inorden.txt";
+                        decomp.descomprimirArchivo(ruta);
+                        JOptionPane.showMessageDialog(null, "Descompresion Exitosa", "Descompresion", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    case 2:
+                        ruta = "arbol_binario_postorden.txt";
+                        decomp.descomprimirArchivo(ruta);
+                        JOptionPane.showMessageDialog(null, "Descompresion Exitosa", "Descompresion", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                }
+                       
+                       break;
+               }
     }//GEN-LAST:event_botonComprimirActionPerformed
 
     private void botonComprimirAVLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonComprimirAVLActionPerformed
